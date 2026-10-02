@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LLM Evaluation Case Study | Lina Cloud</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #08090d;
+      color: #f4f4f5;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1050px, 92%);
+      margin: auto;
+    }
+
+    nav {
+      padding: 24px 0;
+      border-bottom: 1px solid #20222a;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .back {
+      color: #a1a1aa;
+      font-size: 0.9rem;
+    }
+
+    .back:hover {
+      color: #fff;
+    }
+
+    .hero {
+      padding: 90px 0 55px;
+    }
+
+    .label {
+      display: inline-block;
+      border: 1px solid #30333d;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: #b8b8c2;
+      font-size: 0.78rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      line-height: 1.05;
+      max-width: 850px;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: #a8a8b2;
+      font-size: 1.08rem;
+    }
+
+    section {
+      padding: 55px 0;
+      border-top: 1px solid #20222a;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    p {
+      color: #b5b5be;
+      margin-bottom: 16px;
+    }
+
+    .notice {
+      border: 1px solid #343640;
+      background: #101117;
+      padding: 22px;
+      border-radius: 14px;
+      margin-top: 25px;
+    }
+
+    .notice strong {
+      color: #fff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #101117;
+      border: 1px solid #20222a;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card span {
+      color: #8f9099;
+      font-size: 0.82rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .metric {
+      background: #101117;
+      border: 1px solid #20222a;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .metric span {
+      color: #999aa5;
+      font-size: 0.85rem;
+    }
+
+    .score-box {
+      background: #101117;
+      border: 1px solid #20222a;
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 25px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 1fr 100px 100px;
+      gap: 15px;
+      padding: 13px 0;
+      border-bottom: 1px solid #20222a;
+    }
+
+    .score-row:last-child {
+      border-bottom: none;
+    }
+
+    .score-row strong {
+      text-align: center;
+    }
+
+    .highlight {
+      font-size: 1.15rem;
+      color: #eee;
+      margin-top: 20px;
+    }
+
+    ul {
+      padding-left: 22px;
+      color: #b5b5be;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .method {
+      counter-reset: item;
+    }
+
+    .method li {
+      list-style: none;
+      counter-increment: item;
+      margin-bottom: 16px;
+    }
+
+    .method li::before {
+      content: counter(item);
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #3a3c47;
+      border-radius: 50%;
+      margin-right: 10px;
+      color: #ddd;
+      font-size: 0.8rem;
+    }
+
+    .footer {
+      padding: 50px 0;
+      border-top: 1px solid #20222a;
+      color: #777984;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .score-row {
+        grid-template-columns: 1fr 70px 70px;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">Lina Cloud</div>
+      <a class="back" href="index.html">← Back to Portfolio</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <header class="hero">
+      <div class="container">
+        <div class="label">LLM EVALUATION · CASE STUDY 01</div>
+
+        <h1>
+          Comparative Evaluation of LLMs for Operational Data Analysis
+        </h1>
+
+        <p>
+          A controlled evaluation of two large language models using the same
+          dataset, identical instructions, a fixed scoring rubric, and
+          independent numerical verification.
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+
+        <h2>Evaluation Objective</h2>
+
+        <p>
+          The objective was to examine how consistently two LLMs could analyze
+          the same operational dataset while following strict instructions
+          not to invent information.
+        </p>
+
+        <p>
+          The evaluation focused not only on numerical correctness, but also
+          on analytical depth, data-quality awareness, business usefulness,
+          and transparency.
+        </p>
+
+        <div class="notice">
+          <strong>Dataset note:</strong>
+          This is a synthetic portfolio demonstration dataset. It does not
+          represent a real company, client, or confidential business data.
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Dataset & Task</h2>
+
+        <div class="metrics">
+
+          <div class="metric">
+            <strong>150</strong>
+            <span>Operational records</span>
+          </div>
+
+          <div class="metric">
+            <strong>6</strong>
+            <span>Departments</span>
+          </div>
+
+          <div class="metric">
+            <strong>8</strong>
+            <span>Categories</span>
+          </div>
+
+        </div>
+
+        <div class="metrics">
+
+          <div class="metric">
+            <strong>5</strong>
+            <span>Communication channels</span>
+          </div>
+
+          <div class="metric">
+            <strong>3</strong>
+            <span>Operational statuses</span>
+          </div>
+
+          <div class="metric">
+            <strong>2</strong>
+            <span>Models evaluated</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Evaluation Method</h2>
+
+        <ol class="method">
+          <li>
+            The same CSV dataset was supplied to both models.
+          </li>
+
+          <li>
+            The same analysis prompt and requirements were supplied to both models.
+          </li>
+
+          <li>
+            Outputs were examined for factual accuracy, instruction following,
+            analytical depth, data-quality awareness, business usefulness,
+            and transparency.
+          </li>
+
+          <li>
+            Numerical claims were cross-checked against the source dataset.
+          </li>
+
+          <li>
+            Each criterion was scored on a 1–5 scale.
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Evaluation Rubric</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Factual Accuracy</h3>
+            <p>
+              Did the model report numbers and observations supported by the
+              source dataset?
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Instruction Following</h3>
+            <p>
+              Did the model follow the requested structure, constraints,
+              and requirement not to invent information?
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Analytical Depth</h3>
+            <p>
+              Did the model identify meaningful patterns beyond basic counts?
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Data-Quality Awareness</h3>
+            <p>
+              Did the model identify limitations, anomalies, or structural
+              issues in the dataset?
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Business Usefulness</h3>
+            <p>
+              Were the insights and recommendations practical and grounded
+              in the available evidence?
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Transparency</h3>
+            <p>
+              Did the model clearly distinguish observed facts, interpretation,
+              recommendations, and limitations?
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Observed Dataset Findings</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Operational Status</h3>
+            <p>
+              98 records were resolved (65.3%), 22 were pending (14.7%),
+              and 30 were escalated (20.0%).
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Priority Distribution</h3>
+            <p>
+              Medium priority was the most frequent category with 78 records,
+              followed by Low (32), High (31), and Critical (9).
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Resolution Time</h3>
+            <p>
+              Average resolution time among resolved records was 3.49 hours,
+              with a median of 2.8 hours.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Satisfaction</h3>
+            <p>
+              The available satisfaction scores averaged 4.23/5 across
+              98 scored records.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Model Evaluation Results</h2>
+
+        <p>
+          Scores represent performance in this specific evaluation task and
+          are not intended as a universal ranking of the models.
+        </p>
+
+        <div class="score-box">
+
+          <div class="score-row">
+            <strong>Criterion</strong>
+            <strong>ChatGPT</strong>
+            <strong>Claude</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Factual accuracy</span>
+            <strong>5/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Instruction following</span>
+            <strong>5/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Analytical depth</span>
+            <strong>4/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Data-quality awareness</span>
+            <strong>4/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Business usefulness</span>
+            <strong>4/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span>Transparency</span>
+            <strong>5/5</strong>
+            <strong>5/5</strong>
+          </div>
+
+          <div class="score-row">
+            <span><strong>Total</strong></span>
+            <strong>27/30</strong>
+            <strong>30/30</strong>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Key Evaluation Observations</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>ChatGPT</h3>
+            <p>
+              ChatGPT correctly reported the major numerical findings and
+              followed the requested analysis structure. It also identified
+              important limitations surrounding the satisfaction data.
+            </p>
+
+            <p>
+              The evaluation identified opportunities for deeper data-quality
+              inspection and additional segmentation.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Claude</h3>
+            <p>
+              Claude correctly reported the major findings and provided
+              additional analytical detail, including category escalation
+              patterns and deeper resolution-time breakdowns.
+            </p>
+
+            <p>
+              It also identified that Category and Request_Type were
+              one-to-one mappings and flagged ambiguity surrounding
+              Resolution_Hours on escalated records.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Important Limitations</h2>
+
+        <ul>
+          <li>
+            The dataset is synthetic and therefore does not represent
+            real organizational performance.
+          </li>
+
+          <li>
+            Satisfaction scores were available only for resolved records,
+            limiting what can be concluded about pending and escalated cases.
+          </li>
+
+          <li>
+            The meaning of Resolution_Hours for escalated records was not
+            sufficiently defined for treating those values as standard
+            resolution times.
+          </li>
+
+          <li>
+            The evaluation compares two model outputs from one controlled
+            task; results should not be generalized to all tasks or models.
+          </li>
+
+          <li>
+            Model behavior can vary with prompts, datasets, versions,
+            and task design.
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+
+        <h2>Skills Demonstrated</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>LLM Evaluation</h3>
+            <span>Comparative model assessment and structured scoring</span>
+          </div>
+
+          <div class="card">
+            <h3>Prompt Evaluation</h3>
+            <span>Controlled use of identical task instructions</span>
+          </div>
+
+          <div class="card">
+            <h3>Data Verification</h3>
+            <span>Cross-checking model-generated numerical claims</span>
+          </div>
+
+          <div class="card">
+            <h3>AI Output Critique</h3>
+            <span>Identifying analytical strengths, limitations, and gaps</span>
+          </div>
+
+          <div class="card">
+            <h3>Data-Quality Analysis</h3>
+            <span>Recognizing ambiguity and structural dataset issues</span>
+          </div>
+
+          <div class="card">
+            <h3>Business Analysis</h3>
+            <span>Turning structured findings into practical observations</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Lina Cloud · AI Trainer · LLM Evaluation · AI Automation
+    </div>
+  </footer>
+
+</body>
+  </html>

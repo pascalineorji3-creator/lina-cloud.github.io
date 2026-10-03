@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lina Engine | AI Professional Identity Platform</title>
+
+  <meta
+    name="description"
+    content="Lina Engine — an AI-powered professional identity platform designed to transform work, projects, skills, and evidence into a living professional presence."
+  >
+
+  <meta name="author" content="Lina Cloud">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08090d;
+      color: #f5f7fb;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, 92%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid #20232d;
+      padding: 22px 0;
+    }
+
+    .back {
+      color: #aaa0ff;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 100px 0 85px;
+      border-bottom: 1px solid #20232d;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: #9b90f0;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-top: 18px;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #a995ff, #6edcff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin-top: 28px;
+      color: #b5bbc9;
+      font-size: 1.08rem;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 7px 13px;
+      border: 1px solid #303543;
+      border-radius: 999px;
+      color: #c7cbd5;
+      font-size: 0.78rem;
+    }
+
+    section {
+      padding: 85px 0;
+      border-bottom: 1px solid #20232d;
+    }
+
+    .section-title {
+      max-width: 780px;
+      margin-top: 15px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .text {
+      max-width: 780px;
+      margin-top: 25px;
+      color: #b5bbc9;
+    }
+
+    .text + .text {
+      margin-top: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .card {
+      padding: 28px;
+      background: #0e1017;
+      border: 1px solid #252936;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .card p,
+    .card li {
+      color: #aeb4c3;
+      font-size: 0.93rem;
+    }
+
+    .card ul {
+      padding-left: 18px;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .flow-step {
+      padding: 15px 18px;
+      background: #0e1017;
+      border: 1px solid #2a2e3b;
+      border-radius: 12px;
+      color: #e7e9ef;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    .arrow {
+      color: #777e91;
+    }
+
+    .architecture {
+      margin-top: 40px;
+      padding: 30px;
+      background: #0b0d13;
+      border: 1px solid #252936;
+      border-radius: 20px;
+    }
+
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .architecture-item {
+      padding: 15px;
+      background: #11141c;
+      border: 1px solid #252936;
+      border-radius: 12px;
+      color: #b5bbc9;
+      font-size: 0.85rem;
+    }
+
+    .note {
+      margin-top: 28px;
+      padding: 20px;
+      border-left: 3px solid #8f84e8;
+      background: #0e1017;
+      color: #aeb4c3;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+    }
+
+    .skill {
+      padding: 7px 12px;
+      border: 1px solid #2d3240;
+      border-radius: 999px;
+      color: #b9bfcb;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      color: #777e91;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 750px) {
+      .hero {
+        padding: 75px 0 65px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .architecture-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        flex-direction: column;
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <a href="index.html" class="back">← Back to Lina Cloud</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="eyebrow">Product Case Study • AI • Automation</div>
+
+        <h1>
+          Lina Engine:
+          <span class="gradient">A living professional identity.</span>
+        </h1>
+
+        <p class="hero-description">
+          Lina Engine is an AI-powered professional identity platform
+          designed to transform a person's work, projects, skills, and
+          professional evidence into a continuously evolving public
+          professional presence.
+        </p>
+
+        <span class="status">
+          Product in development
+        </span>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">01 — Overview</div>
+
+        <h2 class="section-title">
+          Beyond the traditional portfolio.
+        </h2>
+
+        <p class="text">
+          Traditional portfolios often require professionals to manually
+          decide what to display, write descriptions, update projects,
+          organize evidence, and maintain multiple disconnected profiles.
+        </p>
+
+        <p class="text">
+          Lina Engine was designed around a different idea: instead of
+          treating a professional website as a static collection of pages,
+          treat professional identity as a living system that can discover,
+          organize, update, and present evidence of a person's work.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">02 — The Problem</div>
+
+        <h2 class="section-title">
+          Professional evidence is often scattered.
+        </h2>
+
+        <p class="text">
+          Projects may live on GitHub. Designs may exist in creative tools.
+          Documents may live in cloud storage. Professional information may
+          be spread across social profiles, workspaces, repositories,
+          certificates, and client work.
+        </p>
+
+        <p class="text">
+          Lina Engine explores how these disconnected sources can become
+          structured professional evidence without requiring the user to
+          manually rebuild their identity every time something changes.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Fragmented Evidence</h3>
+            <p>
+              Work, projects, skills, achievements, and professional
+              information often exist across different systems.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Manual Maintenance</h3>
+            <p>
+              Traditional portfolios depend heavily on the owner repeatedly
+              writing, editing, organizing, and updating content.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Limited Context</h3>
+            <p>
+              A static portfolio can struggle to present different aspects
+              of a professional's experience for different visitor purposes.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Lost Opportunities</h3>
+            <p>
+              Valuable professional evidence can remain disconnected from
+              relevant opportunities and potential collaborators.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">03 — Product Concept</div>
+
+        <h2 class="section-title">
+          A professional identity that can evolve with the person.
+        </h2>
+
+        <p class="text">
+          Lina Engine is designed as a professional identity layer rather
+          than simply another portfolio template.
+        </p>
+
+        <p class="text">
+          The system can organize evidence into a professional presentation
+          while keeping the owner in control of what is reviewed, edited,
+          and ultimately published.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">04 — Onboarding</div>
+
+        <h2 class="section-title">
+          Designed to minimize repetitive setup.
+        </h2>
+
+        <p class="text">
+          The onboarding concept moves the user from account creation to a
+          publishable professional identity through a focused sequence.
+        </p>
+
+        <div class="flow">
+
+          <div class="flow-step">Sign in</div>
+          <div class="arrow">→</div>
+
+          <div class="flow-step">
+            Choose layout<br>
+            + Connect workspaces
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="flow-step">
+            Review AI<br>
+            discoveries
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="flow-step">
+            Choose professional<br>
+            address
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="flow-step">Publish</div>
+
+        </div>
+
+        <div class="note">
+          The important design principle is that AI assists with discovery
+          and organization, while the professional remains in control of
+          what becomes public.
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">05 — AI Discovery</div>
+
+        <h2 class="section-title">
+          Turning existing work into professional evidence.
+        </h2>
+
+        <p class="text">
+          Connected workspaces can provide the raw material from which the
+          system identifies projects, technologies, categories, achievements,
+          descriptions, and other professional signals.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Discover</h3>
+            <p>
+              Identify potentially useful professional information from
+              connected sources.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Structure</h3>
+            <p>
+              Organize discovered information into professional entities
+              such as projects, skills, services, and evidence.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Review</h3>
+            <p>
+              Give the owner an opportunity to inspect and refine
+              AI-generated discoveries.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Publish</h3>
+            <p>
+              Only reviewed and approved professional information becomes
+              part of the public identity.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">06 — Two Experiences</div>
+
+        <h2 class="section-title">
+          One professional identity. Two carefully separated experiences.
+        </h2>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Owner Experience</h3>
+            <ul>
+              <li>Manage professional identity</li>
+              <li>Connect workspaces</li>
+              <li>Review AI discoveries</li>
+              <li>Edit generated content</li>
+              <li>Control publication</li>
+              <li>Manage visibility</li>
+              <li>Configure AI features</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Visitor Experience</h3>
+            <ul>
+              <li>Explore professional evidence</li>
+              <li>Navigate relevant sections</li>
+              <li>Use optional AI guidance</li>
+              <li>Discover projects and capabilities</li>
+              <li>Interact with professional content</li>
+              <li>Access opportunities where appropriate</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">07 — Visitor Intelligence</div>
+
+        <h2 class="section-title">
+          Helpful guidance without taking over the experience.
+        </h2>
+
+        <p class="text">
+          Lina Engine's visitor intelligence concept is deliberately
+          non-intrusive. Visitors can choose what they are interested in,
+          allowing relevant sections to move upward in the existing layout
+          without forcing the visitor through a separate navigation flow.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Optional AI Guide</h3>
+            <p>
+              AI guidance can remain available without constantly interrupting
+              the visitor.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Purpose-Based Exploration</h3>
+            <p>
+              Visitors can indicate what they are looking for, such as
+              projects, skills, services, or professional experience.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Session-Aware Journey</h3>
+            <p>
+              The experience is designed to avoid repeatedly showing the same
+              guidance when a visitor pauses and resumes their journey.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Layout Preservation</h3>
+            <p>
+              Personalization changes the order of relevant content rather
+              than forcing visitors into a completely different website.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">08 — Opportunity Engine</div>
+
+        <h2 class="section-title">
+          Connecting professional evidence with possibilities.
+        </h2>
+
+        <p class="text">
+          The Opportunity Engine is designed to use the professional identity
+          and evidence already organized inside Lina Engine to identify
+          potentially relevant opportunities.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Professional Matching</h3>
+            <p>
+              Match opportunities against professional capabilities,
+              projects, services, and evidence.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Evidence-Aware Discovery</h3>
+            <p>
+              Use actual professional evidence as context instead of relying
+              only on a manually written profile.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Opportunity Categories</h3>
+            <p>
+              The broader concept can support opportunities such as jobs,
+              freelance work, collaborations, research, grants, competitions,
+              and other professional opportunities.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Owner Control</h3>
+            <p>
+              Opportunity features remain configurable by the professional
+              rather than being forced into the public experience.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">09 — Automation Architecture</div>
+
+        <h2 class="section-title">
+          Designed as an interconnected system, not a collection of isolated features.
+        </h2>
+
+        <p class="text">
+          Lina Engine's automation architecture separates major responsibilities
+          into defined domains so the system can evolve without turning every
+          feature into one large workflow.
+        </p>
+
+        <div class="architecture">
+
+          <div class="architecture-grid">
+
+            <div class="architecture-item">Identity</div>
+            <div class="architecture-item">Workspace</div>
+            <div class="architecture-item">Discovery</div>
+
+            <div class="architecture-item">Intelligence</div>
+            <div class="architecture-item">Review</div>
+            <div class="architecture-item">Publishing</div>
+
+            <div class="architecture-item">Visitor</div>
+            <div class="architecture-item">Voice</div>
+            <div class="architecture-item">Opportunity</div>
+
+            <div class="architecture-item">Presentation</div>
+            <div class="architecture-item">Social</div>
+            <div class="architecture-item">Analytics</div>
+
+            <div class="architecture-item">Engineering Service</div>
+            <div class="architecture-item">Classification</div>
+
+          </div>
+
+        </div>
+
+        <div class="note">
+          These domains are intended to keep identity, discovery,
+          intelligence, publishing, visitor interaction, opportunities,
+          presentation, social automation, analytics, engineering services,
+          and classification logically separated.
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">10 — Privacy & Cost Design</div>
+
+        <h2 class="section-title">
+          Intelligence should not mean unnecessary AI calls.
+        </h2>
+
+        <p class="text">
+          A major design consideration was avoiding a model call every time a
+          visitor opens a page or interacts with the professional identity.
+        </p>
+
+        <p class="text">
+          Instead, the architecture favors precomputation, caching, owner-side
+          generation, and stored results wherever possible. This reduces
+          unnecessary inference costs while also limiting how much visitor
+          behavior needs to be processed dynamically.
+        </p>
+
+        <div class="feature-grid">
+
+          <div class="card">
+            <h3>Precompute</h3>
+            <p>
+              Generate reusable AI-derived information when the owner's data
+              changes rather than repeatedly generating identical results.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Cache</h3>
+            <p>
+              Store reusable outputs so visitors can access relevant
+              information without requiring a fresh model call.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Read-Time Efficiency</h3>
+            <p>
+              Favor database reads, stored state, and deterministic logic for
+              ordinary visitor interactions.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Privacy-Aware Recognition</h3>
+            <p>
+              Return recognition and journey-state concepts are designed with
+              privacy considerations rather than relying on unnecessary
+              personal identification.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">11 — What This Project Demonstrates</div>
+
+        <h2 class="section-title">
+          Product thinking across AI, automation, UX, and systems design.
+        </h2>
+
+        <p class="text">
+          Lina Engine demonstrates my approach to designing an AI product
+          beyond the model itself. The project considers how AI interacts
+          with data, users, workflows, interfaces, costs, privacy, and
+          professional outcomes.
+        </p>
+
+        <div class="skills">
+
+          <span class="skill">AI Product Design</span>
+          <span class="skill">AI Architecture</span>
+          <span class="skill">Automation</span>
+          <span class="skill">Workflow Design</span>
+          <span class="skill">UX Systems</span>
+          <span class="skill">Professional Identity</span>
+          <span class="skill">AI Personalization</span>
+          <span class="skill">Data Modeling</span>
+          <span class="skill">Privacy-Aware Design</span>
+          <span class="skill">Cost-Aware AI</span>
+          <span class="skill">Product Strategy</span>
+          <span class="skill">AI-Assisted Development</span>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+
+        <div class="section-label">12 — Current Status</div>
+
+        <h2 class="section-title">
+          An active product build.
+        </h2>
+
+        <p class="text">
+          Lina Engine is currently being developed as a long-term product
+          concept. Its architecture, database planning, decision logic,
+          automation structure, visitor experience, and major product
+          behaviors have been defined progressively during development.
+        </p>
+
+        <p class="text">
+          The public case study represents the product thinking and system
+          design behind the project. It does not claim that every described
+          capability is already deployed in production.
+        </p>
+
+        <div class="note">
+          <strong>Transparency note:</strong>
+          Features described as part of the Lina Engine architecture represent
+          designed or planned functionality unless explicitly identified as
+          currently implemented.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Lina Cloud • Lina Engine Case Study
+    </div>
+  </footer>
+
+</body>
+  </html>

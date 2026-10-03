@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bloomie | Accessible Child Development Reading Companion</title>
+
+  <meta
+    name="description"
+    content="Bloomie is a child-development reading companion designed around accessibility, emotional support, inclusive communication, and parent-guided experiences."
+  >
+
+  <style>
+    :root {
+      --bg: #08100d;
+      --surface: #0e1915;
+      --surface-2: #12211b;
+      --border: rgba(255,255,255,0.09);
+      --text: #edf4ef;
+      --muted: #aab9b1;
+      --accent: #8ed6b0;
+      --accent-soft: rgba(142,214,176,0.10);
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .back {
+      color: var(--muted);
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .back:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 105px 0 85px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      max-width: 850px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+      margin-bottom: 28px;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.65;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 30px;
+      padding: 9px 14px;
+      border: 1px solid rgba(142,214,176,0.25);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 82px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-number {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      max-width: 760px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      max-width: 780px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .lead {
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 38px;
+    }
+
+    .card {
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .feature {
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .feature span {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .flow-item {
+      padding: 12px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .architecture {
+      display: grid;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .architecture-row {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 20px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .architecture-row strong {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .architecture-row span {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 28px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--surface);
+      font-size: 13px;
+    }
+
+    .note {
+      margin-top: 32px;
+      padding: 24px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .note p {
+      margin-bottom: 0;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .footer {
+      padding: 55px 0 70px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .footer-link {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .hero {
+        padding: 75px 0 65px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">Lina Cloud</a>
+      <a href="index.html" class="back">← Back to portfolio</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="container">
+
+        <div class="eyebrow">
+          AI Product Design · Accessibility · Child Development
+        </div>
+
+        <h1>
+          Bloomie
+        </h1>
+
+        <p class="hero-description">
+          An accessible child-development reading companion designed to make
+          stories, emotional support, and inclusive communication feel natural
+          for autistic and deaf or hard-of-hearing children.
+        </p>
+
+        <div class="status">
+          Product in development
+        </div>
+
+      </div>
+    </header>
+
+
+    <!-- 01 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">01 · Overview</div>
+
+        <h2>
+          A reading experience designed around the child, not around the interface.
+        </h2>
+
+        <p class="lead">
+          Bloomie is a founder-owned product concept that combines children's
+          reading, accessibility, emotional support, and parent-guided
+          experiences into one calm digital environment.
+        </p>
+
+        <p>
+          The product is being designed specifically for children who may
+          experience communication, sensory, emotional, or accessibility
+          barriers during ordinary digital reading experiences.
+        </p>
+
+        <p>
+          Rather than treating accessibility as an additional setting,
+          Bloomie places inclusive communication and emotional safety inside
+          the core experience.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- 02 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">02 · The Problem</div>
+
+        <h2>
+          Accessibility should be part of the experience from the beginning.
+        </h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Communication barriers</h3>
+            <p>
+              Many digital children's experiences are primarily designed around
+              spoken or written communication, leaving children with different
+              communication needs underserved.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Sensory overload</h3>
+            <p>
+              Excessive movement, visual noise, sound, or interaction can make
+              an otherwise useful experience difficult to navigate.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Emotional needs</h3>
+            <p>
+              Reading can intersect with difficult emotions. Bloomie therefore
+              treats emotional regulation as part of the product experience
+              rather than an unrelated feature.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Parent visibility</h3>
+            <p>
+              Parents and caregivers need appropriate visibility without
+              turning the child's experience into a surveillance-heavy interface.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 03 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">03 · Product Concept</div>
+
+        <h2>
+          Two familiar companions. One calm environment.
+        </h2>
+
+        <p>
+          Bloomie uses two recurring companions, Pete and Mia, to create
+          continuity across the reading experience.
+        </p>
+
+        <p>
+          The companions are intentionally designed to remain ageless and
+          approachable rather than feeling overly childish, allowing the
+          experience to remain appropriate as a child grows.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Pete</h3>
+            <p>
+              A familiar companion designed to support the reading and
+              interaction experience through expressive communication.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Mia</h3>
+            <p>
+              A second companion providing another recognizable presence
+              throughout Bloomie's experiences.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <p>
+            The companion system is designed around consistency, emotional
+            safety, and accessibility rather than constant stimulation.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 04 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">04 · Inclusive Communication</div>
+
+        <h2>
+          Communication is designed to happen in more than one way.
+        </h2>
+
+        <p>
+          Bloomie is designed to support both spoken communication and
+          sign-based interaction, including SEE and ASL support.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature">
+            <strong>Speech</strong>
+            <span>
+              Spoken companion interaction designed to accompany the reading
+              experience.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Sign language</strong>
+            <span>
+              Companion signing designed around SEE and ASL accessibility.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Facial expression</strong>
+            <span>
+              Companion expressions provide additional emotional context
+              without relying exclusively on text or speech.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Mouth movement</strong>
+            <span>
+              Companion animation is designed to coordinate visual mouth
+              movement with spoken interaction.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 05 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">05 · Reading Experience</div>
+
+        <h2>
+          Reading is the centre of the product.
+        </h2>
+
+        <p>
+          Bloomie is fundamentally a reading companion rather than a generic
+          entertainment application.
+        </p>
+
+        <p>
+          The surrounding features are designed to support the child's
+          relationship with stories instead of competing with them.
+        </p>
+
+        <div class="flow">
+
+          <div class="flow-item">Choose reading experience</div>
+          <div class="flow-item">Meet companion</div>
+          <div class="flow-item">Read</div>
+          <div class="flow-item">Interact</div>
+          <div class="flow-item">Emotional check-in</div>
+          <div class="flow-item">Return to reading</div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 06 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">06 · Emotional Safety</div>
+
+        <h2>
+          The product makes room for emotions without overwhelming the child.
+        </h2>
+
+        <p>
+          Bloomie includes an emotional check-in designed to provide a simple
+          way for a child to communicate how they are feeling.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Emotional check-in</h3>
+            <p>
+              A simple interaction designed to help the child communicate
+              their current emotional state.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Calm Corner</h3>
+            <p>
+              A short, approximately one-minute breathing experience designed
+              to provide a calmer transition when a child needs a pause.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Parent-only insights</h3>
+            <p>
+              Selected emotional information can be surfaced to the parent or
+              caregiver rather than exposing adult-facing information inside
+              the child's interface.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Low stimulation</h3>
+            <p>
+              The visual and interaction system is intentionally designed to
+              avoid unnecessary movement, noise, and visual overload.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 07 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">07 · Bloom Garden</div>
+
+        <h2>
+          Progress becomes a gentle visual experience.
+        </h2>
+
+        <p>
+          Bloom Garden is designed as a calmer progression layer where the
+          child's engagement with Bloomie can translate into a growing,
+          personalized environment.
+        </p>
+
+        <p>
+          The goal is not to turn reading into a competitive game. The
+          interaction is intentionally softer and more reflective.
+        </p>
+
+        <div class="note">
+          <p>
+            Bloom Garden is designed to reinforce engagement without creating
+            pressure, streak anxiety, or excessive reward mechanics.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 08 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">08 · Parent & Therapist Ecosystem</div>
+
+        <h2>
+          Adult controls stay separate from the child's world.
+        </h2>
+
+        <p>
+          Bloomie's architecture separates the child's experience from
+          parent- and therapist-facing functionality.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Parent Zone</h3>
+            <p>
+              A dedicated adult-facing space for appropriate insights,
+              settings, and account-level controls.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Content workflow</h3>
+            <p>
+              Parent and therapist story submissions can follow an approval
+              process before becoming available inside the product.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Admin moderation</h3>
+            <p>
+              Content is intended to pass through an administrative review
+              workflow before publication.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Private / public content</h3>
+            <p>
+              Content architecture is designed to distinguish private
+              experiences from approved content that can be made available
+              more broadly.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 09 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">09 · Technical Architecture</div>
+
+        <h2>
+          A mobile-first product with a separate administrative layer.
+        </h2>
+
+        <p>
+          Bloomie's planned technical architecture separates the mobile
+          experience, backend services, and administrative environment.
+        </p>
+
+        <div class="architecture">
+
+          <div class="architecture-row">
+            <strong>Mobile application</strong>
+            <span>
+              React Native + Expo for iOS and Android.
+            </span>
+          </div>
+
+          <div class="architecture-row">
+            <strong>Authentication</strong>
+            <span>
+              Firebase Authentication.
+            </span>
+          </div>
+
+          <div class="architecture-row">
+            <strong>Database</strong>
+            <span>
+              Firebase Firestore for application data and structured
+              user/content records.
+            </span>
+          </div>
+
+          <div class="architecture-row">
+            <strong>Storage</strong>
+            <span>
+              Firebase Storage for supported application assets.
+            </span>
+          </div>
+
+          <div class="architecture-row">
+            <strong>Backend logic</strong>
+            <span>
+              Firebase Functions for server-side workflows and controlled
+              application logic.
+            </span>
+          </div>
+
+          <div class="architecture-row">
+            <strong>Admin environment</strong>
+            <span>
+              A separate Next.js administrative dashboard with Firestore
+              listeners for content and operational management.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 10 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">10 · Content Safety</div>
+
+        <h2>
+          Children's content requires a controlled publishing workflow.
+        </h2>
+
+        <p>
+          Bloomie's content model is designed around moderation and approval
+          rather than unrestricted user publishing.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature">
+            <strong>Submission</strong>
+            <span>
+              Parent or therapist content can enter a controlled submission
+              workflow.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Administrative review</strong>
+            <span>
+              Submitted content is intended to be reviewed before publication.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Asset restrictions</strong>
+            <span>
+              The planned workflow restricts uploaded story imagery to
+              approved cartoon-style content.
+            </span>
+          </div>
+
+          <div class="feature">
+            <strong>Visibility controls</strong>
+            <span>
+              Content can be designed for private or approved broader
+              availability.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 11 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">11 · Accessibility & UX Principles</div>
+
+        <h2>
+          Calm interaction is a product requirement, not decoration.
+        </h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Low stimulation</h3>
+            <p>
+              Reduce unnecessary animation, visual noise, and interaction
+              complexity.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Predictability</h3>
+            <p>
+              Familiar companions and consistent interaction patterns help
+              reduce unnecessary cognitive load.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Multiple communication modes</h3>
+            <p>
+              Support spoken, visual, signed, and expressive communication
+              rather than assuming one mode works for everyone.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Child-first interface</h3>
+            <p>
+              Adult controls and operational information remain separated from
+              the child's core experience.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 12 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">12 · Product Architecture</div>
+
+        <h2>
+          Bloomie is being designed as a connected system rather than a
+          collection of isolated features.
+        </h2>
+
+        <div class="tags">
+
+          <span class="tag">Reading Engine</span>
+          <span class="tag">Companion System</span>
+          <span class="tag">Accessibility</span>
+          <span class="tag">SEE</span>
+          <span class="tag">ASL</span>
+          <span class="tag">Emotional Safety</span>
+          <span class="tag">Calm Corner</span>
+          <span class="tag">Bloom Garden</span>
+          <span class="tag">Parent Zone</span>
+          <span class="tag">Therapist Workflow</span>
+          <span class="tag">Content Moderation</span>
+          <span class="tag">Admin Dashboard</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Expo</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">Privacy-Aware Design</span>
+          <span class="tag">Accessibility UX</span>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 13 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">13 · What This Project Demonstrates</div>
+
+        <h2>
+          Product thinking beyond the interface.
+        </h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>AI product design</h3>
+            <p>
+              Designing an intelligent product around a defined user problem
+              instead of adding AI as a superficial feature.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Accessibility systems</h3>
+            <p>
+              Designing communication and interaction around different
+              abilities from the beginning of the product architecture.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Technical architecture</h3>
+            <p>
+              Connecting mobile application architecture, backend services,
+              storage, authentication, and administrative tooling.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Safety-aware UX</h3>
+            <p>
+              Designing child-facing experiences with moderation, privacy,
+              emotional safety, and controlled adult access in mind.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Systems thinking</h3>
+            <p>
+              Connecting reading, accessibility, emotional support, content,
+              parent workflows, and administration into one coherent system.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Product strategy</h3>
+            <p>
+              Translating a broad product vision into structured user flows,
+              features, architecture, and operational workflows.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 14 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">14 · Current Status</div>
+
+        <h2>
+          Bloomie is an active product-development project.
+        </h2>
+
+        <p>
+          Bloomie is currently in development and architecture/design work.
+          The project includes a defined product foundation, user experience
+          direction, technical architecture, accessibility strategy, content
+          workflow, and administrative system.
+        </p>
+
+        <p>
+          The case study intentionally does not present planned features as
+          completed production functionality.
+        </p>
+
+        <div class="note">
+          <p>
+            <strong>Transparency note:</strong>
+            Features described on this page represent the current Bloomie
+            product design and development direction. Unless explicitly
+            identified as implemented, they should be understood as designed,
+            specified, or planned rather than presented as fully deployed
+            production features.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 15 -->
+    <section>
+      <div class="container">
+
+        <div class="section-number">15 · Skills Demonstrated</div>
+
+        <h2>
+          Building the system behind the experience.
+        </h2>
+
+        <div class="tags">
+
+          <span class="tag">AI Product Design</span>
+          <span class="tag">Product Architecture</span>
+          <span class="tag">UX Design</span>
+          <span class="tag">Accessibility Design</span>
+          <span class="tag">Child-Centred UX</span>
+          <span class="tag">Emotional Safety</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Expo</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">Firebase Storage</span>
+          <span class="tag">Firebase Functions</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">Admin Systems</span>
+          <span class="tag">Data Modelling</span>
+          <span class="tag">Content Workflows</span>
+          <span class="tag">Privacy-Aware Design</span>
+          <span class="tag">System Thinking</span>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <p>
+        Bloomie · A Lina Cloud product project
+      </p>
+
+      <a href="index.html" class="footer-link">
+        Back to portfolio →
+      </a>
+
+    </div>
+  </footer>
+
+</body>
+  </html>

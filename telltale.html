@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TellTale | AI-Writing Pattern Explorer</title>
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --surface: #12151c;
+      --surface-2: #171b23;
+      --text: #f3f4f6;
+      --muted: #9aa1ad;
+      --accent: #c9a7ff;
+      --accent-soft: rgba(201, 167, 255, 0.12);
+      --border: rgba(255,255,255,0.09);
+      --max: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 90px 0 70px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 24px 0 18px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 700;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 17px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(201,167,255,0.5);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #17121f;
+      border-color: var(--accent);
+    }
+
+    /* META */
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta-item {
+      padding: 25px 22px;
+      border-right: 1px solid var(--border);
+    }
+
+    .meta-item:last-child {
+      border-right: none;
+    }
+
+    .meta-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* CONTENT */
+
+    main {
+      padding: 80px 0;
+    }
+
+    .section {
+      padding: 0 0 78px;
+    }
+
+    .section-number {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      max-width: 720px;
+      margin: 0 0 18px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .section p {
+      max-width: 760px;
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    /* GRID */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    /* SIGNAL LIST */
+
+    .signal-list {
+      margin-top: 30px;
+      border-top: 1px solid var(--border);
+    }
+
+    .signal {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .signal-name {
+      font-weight: 600;
+    }
+
+    .signal-description {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CODE-LIKE BLOCK */
+
+    .code-block {
+      margin-top: 28px;
+      padding: 24px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #080a0f;
+      color: #cdd2dc;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* TAGS */
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+    }
+
+    .tag {
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      color: #d7d9df;
+      font-size: 12px;
+    }
+
+    /* CALLOUT */
+
+    .callout {
+      margin-top: 28px;
+      padding: 25px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .callout p {
+      margin: 0;
+      color: #d8d2e5;
+    }
+
+    /* STATUS */
+
+    .status-box {
+      margin-top: 28px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .status-box strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .status-box p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .back {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .meta {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .meta-item:nth-child(2) {
+        border-right: none;
+      }
+
+      .meta-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .signal {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(var(--max), calc(100% - 28px));
+      }
+
+      .hero {
+        padding: 65px 0 55px;
+      }
+
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .meta-item:last-child {
+        border-bottom: none;
+      }
+
+      main {
+        padding: 60px 0;
+      }
+
+      .section {
+        padding-bottom: 60px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+
+      <div class="eyebrow">
+        Product experiment · In progress
+      </div>
+
+      <h1>TellTale</h1>
+
+      <p class="hero-description">
+        An interactive AI-writing pattern explorer designed to make
+        suspiciously generic language visible, explain why certain phrases
+        stand out, and let users argue with the analysis rather than simply
+        receive a binary verdict.
+      </p>
+
+      <div class="hero-actions">
+        <a
+          class="button primary"
+          href="https://telltaledetector.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View live project ↗
+        </a>
+
+        <a class="button" href="index.html">
+          Back to portfolio
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="meta">
+
+      <div class="meta-item">
+        <span class="meta-label">Type</span>
+        <span class="meta-value">AI / Web Product Experiment</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-label">Stack</span>
+        <span class="meta-value">HTML · CSS · JavaScript</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-label">Deployment</span>
+        <span class="meta-value">Netlify</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-label">Current status</span>
+        <span class="meta-value">In progress</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <main>
+
+    <div class="container">
+
+      <!-- 01 -->
+
+      <section class="section">
+
+        <div class="section-number">01 · Overview</div>
+
+        <h2>Turning vague “AI writing” signals into something people can inspect.</h2>
+
+        <p>
+          TellTale is a browser-based experiment exploring how linguistic
+          patterns commonly associated with generic AI-generated writing can
+          be presented as an interactive editorial experience.
+        </p>
+
+        <p>
+          Instead of presenting the user with a simple “AI” or “human”
+          verdict, the interface highlights individual phrases and connects
+          them to short explanatory notes.
+        </p>
+
+        <div class="callout">
+          <p>
+            The central product idea is simple: <strong>show the pattern,
+            explain the signal, and let the user make the final judgement.</strong>
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- 02 -->
+
+      <section class="section">
+
+        <div class="section-number">02 · The Product Idea</div>
+
+        <h2>Detection as an editorial conversation.</h2>
+
+        <p>
+          Many AI-writing discussions focus on whether a detector can produce
+          a definitive classification. TellTale takes a different interface
+          approach.
+        </p>
+
+        <p>
+          The experience behaves more like an editor marking up a manuscript.
+          Potentially generic phrases are underlined, and corresponding
+          margin notes explain the type of pattern that triggered the
+          highlight.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Visible evidence</h3>
+            <p>
+              Potential signals are highlighted directly inside the sample
+              text instead of being hidden behind a single score.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Explanatory notes</h3>
+            <p>
+              Each highlighted phrase is paired with a short explanation,
+              turning the result into something a user can inspect.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Interactive markup</h3>
+            <p>
+              Hovering or focusing a highlighted phrase connects it to its
+              corresponding editorial note.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>User-controlled testing</h3>
+            <p>
+              Users can open the editor, paste their own paragraph, and run
+              the current local pattern analysis in the browser.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- 03 -->
+
+      <section class="section">
+
+        <div class="section-number">03 · Linguistic Signals</div>
+
+        <h2>The current implementation uses pattern-based signals.</h2>
+
+        <p>
+          The live implementation contains a collection of JavaScript regular
+          expressions designed to identify recurring phrases and constructions
+          often associated with generic AI-style writing.
+        </p>
+
+        <div class="signal-list">
+
+          <div class="signal">
+            <div class="signal-name">Stiff transitions</div>
+            <div class="signal-description">
+              Terms such as “furthermore,” “moreover,” and “in conclusion”
+              are treated as potential signals of formulaic prose.
+            </div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">Generic framing</div>
+            <div class="signal-description">
+              Phrases such as “in today's fast-paced world” and
+              “it is important to note that” are flagged as generic openings
+              or framing devices.
+            </div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">Vague language</div>
+            <div class="signal-description">
+              Expressions such as “wide range of,” “robust,” and “holistic”
+              can be flagged when they provide broad meaning without much
+              concrete information.
+            </div>
+          </div>
+
+          <div class="signal">
+            <div class="signal-name">AI-associated phrasing</div>
+            <div class="signal-description">
+              Terms and constructions including “leverage,” “delve into,”
+              “unlock,” “seamless,” and “game-changing” are included in the
+              current rule set.
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- 04 -->
+
+      <section class="section">
+
+        <div class="section-number">04 · How The Analysis Works</div>
+
+        <h2>Small rules, visible reasoning.</h2>
+
+        <p>
+          The current implementation deliberately keeps the analysis
+          self-contained. There is no external API call in the browser
+          analysis currently used by the live interface.
+        </p>
+
+        <p>
+          When a user submits text, JavaScript scans it against the project's
+          predefined pattern rules. Matching phrases are collected,
+          positioned in the original text, and displayed as interactive
+          annotations.
+        </p>
+
+        <div class="code-block">
+const { score, flags } = analyzeLocally(text);
+
+render(text, flags, score);
+
+editorStatus.textContent = flags.length
+  ? "Marked up. Hover a circle or a note to see the connection."
+  : "Nothing jumped out. That's a good sign.";
+        </div>
+
+        <p style="margin-top:24px;">
+          The current score is derived from the number of detected patterns
+          relative to text length. It is therefore an experimental density
+          signal, not a probability that a text was written by AI.
+        </p>
+
+      </section>
+
+
+      <!-- 05 -->
+
+      <section class="section">
+
+        <div class="section-number">05 · Interaction Design</div>
+
+        <h2>The interface is part of the experiment.</h2>
+
+        <p>
+          TellTale was designed around the idea that an analytical tool does
+          not have to feel like a dashboard.
+        </p>
+
+        <p>
+          The live interface uses a dark “desk” environment, a paper-like
+          document, handwritten-style annotations, red editorial markings,
+          and connecting lines between flagged text and margin notes.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Editorial metaphor</h3>
+            <p>
+              The paper and handwritten markup create a familiar mental model:
+              someone is reviewing a piece of writing.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Progressive interaction</h3>
+            <p>
+              The user can first inspect the example, then open the editor
+              when they are ready to test their own text.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Responsive layout</h3>
+            <p>
+              The desktop experience uses margin annotations and leader lines,
+              while the layout adapts for smaller screens.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Accessibility considerations</h3>
+            <p>
+              Interactive flags and notes support keyboard focus, and visible
+              focus states are included in the interface styling.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- 06 -->
+
+      <section class="section">
+
+        <div class="section-number">06 · Privacy & Processing</div>
+
+        <h2>The current user analysis stays in the browser.</h2>
+
+        <p>
+          The current “Try your own paragraph” implementation performs its
+          analysis locally with JavaScript.
+        </p>
+
+        <p>
+          The interface explicitly communicates that the submitted text is
+          not sent anywhere during this local analysis flow. The project
+          therefore provides a useful privacy-oriented interaction model while
+          experimenting with the detection concept.
+        </p>
+
+        <div class="callout">
+          <p>
+            <strong>Current implementation:</strong> local pattern matching,
+            client-side scoring, and browser-rendered markup. No external
+            network request is required for the current analysis.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- 07 -->
+
+      <section class="section">
+
+        <div class="section-number">07 · What I Built</div>
+
+        <h2>From concept to a working interactive prototype.</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Interface system</h3>
+            <p>
+              Designed and implemented the visual language, typography,
+              editorial paper interface, annotations, buttons, responsive
+              states, and interaction feedback.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Pattern engine</h3>
+            <p>
+              Built the JavaScript pattern library using regular expressions
+              and explanatory notes for each detected phrase.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Markup renderer</h3>
+            <p>
+              Built the rendering logic that finds matching phrases,
+              highlights them in context, and connects them with notes.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Scoring logic</h3>
+            <p>
+              Implemented an experimental density-based score that considers
+              detected patterns relative to approximate text length.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>User testing flow</h3>
+            <p>
+              Added a user-facing editor where visitors can paste text and
+              request a local analysis.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Deployment</h3>
+            <p>
+              Deployed the working web experience through Netlify.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- 08 -->
+
+      <section class="section">
+
+        <div class="section-number">08 · Limitations</div>
+
+        <h2>What TellTale does not claim.</h2>
+
+        <p>
+          TellTale is intentionally presented as an experimental writing
+          pattern explorer rather than a scientifically validated AI detector.
+        </p>
+
+        <p>
+          The current rule-based approach can identify phrases that match its
+          predefined patterns, but a matching phrase does not prove that a
+          language model wrote the text.
+        </p>
+
+        <p>
+          Human writers can naturally use the same vocabulary, while AI
+          systems can produce writing that avoids these particular patterns.
+          The score should therefore be treated as an exploratory signal,
+          not a definitive classification.
+        </p>
+
+        <div class="callout">
+          <p>
+            The product itself communicates this limitation:
+            <strong>“It isn't a lie detector.”</strong>
+            The circles are intended as a second opinion, not a verdict.
+          </p>
+        </div>
+
+      </section>
+
+
+      <!-- 09 -->
+
+      <section class="section">
+
+        <div class="section-number">09 · Product Thinking</div>
+
+        <h2>The interesting part is not just the detector.</h2>
+
+        <p>
+          The project explores a broader product question:
+          <strong>How can an AI-related analytical tool expose its reasoning
+          instead of asking users to blindly trust a score?</strong>
+        </p>
+
+        <p>
+          That led to several design decisions: visible evidence, contextual
+          explanations, local processing, an editorial metaphor, and an
+          explicit warning against treating the result as proof.
+        </p>
+
+        <p>
+          The result is a small but focused experiment combining front-end
+          engineering, AI concepts, linguistic pattern exploration, UX
+          design, and responsible product communication.
+        </p>
+
+      </section>
+
+
+      <!-- 10 -->
+
+      <section class="section">
+
+        <div class="section-number">10 · Current Status</div>
+
+        <h2>A working prototype with room to evolve.</h2>
+
+        <div class="status-box">
+
+          <strong>Current state: Working web prototype</strong>
+
+          <p>
+            The live project contains the interactive editorial interface,
+            local pattern analysis, user text testing, phrase highlighting,
+            margin explanations, scoring, responsive behavior, and Netlify
+            deployment.
+          </p>
+
+        </div>
+
+        <p style="margin-top:24px;">
+          Future development could explore broader linguistic features,
+          stronger evaluation methodology, larger test sets, and additional
+          analysis approaches. Those are future directions rather than
+          capabilities claimed by the current implementation.
+        </p>
+
+      </section>
+
+
+      <!-- 11 -->
+
+      <section class="section">
+
+        <div class="section-number">11 · Skills Demonstrated</div>
+
+        <h2>What this project demonstrates.</h2>
+
+        <div class="tags">
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Front-End Development</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">UX Design</span>
+          <span class="tag">Interaction Design</span>
+          <span class="tag">AI Product Thinking</span>
+          <span class="tag">Linguistic Pattern Analysis</span>
+          <span class="tag">Rule-Based Systems</span>
+          <span class="tag">Client-Side Processing</span>
+          <span class="tag">Privacy-Aware Design</span>
+          <span class="tag">Product Experimentation</span>
+          <span class="tag">Technical Communication</span>
+          <span class="tag">Netlify Deployment</span>
+
+        </div>
+
+      </section>
+
+
+      <!-- 12 -->
+
+      <section class="section">
+
+        <div class="section-number">12 · Live Project</div>
+
+        <h2>See the experiment in action.</h2>
+
+        <p>
+          The case study explains the engineering and product decisions.
+          The live site lets you experience the interface itself.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="button primary"
+            href="https://telltaledetector.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open TellTale ↗
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- TRANSPARENCY -->
+
+      <section class="section">
+
+        <div class="section-number">Transparency Note</div>
+
+        <p>
+          This case study describes the implementation represented by the
+          current TellTale project. It does not present TellTale as a
+          scientifically validated AI-content detector, nor does it claim
+          capabilities that are not currently implemented in the live code.
+        </p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        Lina Cloud · AI, automation & software projects
+      </div>
+
+      <a class="back" href="index.html">
+        ← Back to portfolio
+      </a>
+
+    </div>
+
+  </footer>
+
+</body>
+        </html>

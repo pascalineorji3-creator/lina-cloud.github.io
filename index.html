@@ -257,6 +257,18 @@
       transition: 0.2s ease;
     }
 
+    .project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  border: 1px solid #242834;
+  background: #151722;
+    }
+   
     .project:hover {
       transform: translateY(-4px);
       border-color: #3b4050;
@@ -543,60 +555,92 @@
 
         <div class="project-grid">
 
-          <article class="project">
-            <div class="project-number">PROJECT 01</div>
-            <h3>Lina Engine</h3>
-            <p>
-              An AI-powered professional identity platform designed to turn
-              a person's work, projects, skills, and evidence into a living
-              professional presence.
-            </p>
+<article class="project">
+  <div class="project-number">PROJECT 01</div>
 
-            <div class="project-tags">
-              <span>AI</span>
-              <span>Automation</span>
-              <span>Professional Identity</span>
-            </div>
+  <img
+    class="project-image"
+    src="images/1791931556911.jpg"
+    alt="Lina Engine professional identity platform thumbnail"
+    loading="lazy"
+  >
 
-            <a href="lina-engine.html" class="project-link">View case study →</a>
-          </article>
+  <h3>Lina Engine</h3>
 
-          <article class="project">
-            <div class="project-number">PROJECT 02</div>
-            <h3>Bloomie</h3>
-            <p>
-              An AI-assisted child-development reading companion designed
-              around accessible reading, emotional support, signing,
-              parent insights, and controlled content workflows.
-            </p>
+  <p>
+    An AI-powered professional identity platform designed to turn
+    a person's work, projects, skills, and evidence into a living
+    professional presence.
+  </p>
 
-            <div class="project-tags">
-              <span>AI Product</span>
-              <span>Accessibility</span>
-              <span>React Native</span>
-            </div>
+  <div class="project-tags">
+    <span>AI</span>
+    <span>Automation</span>
+    <span>Professional Identity</span>
+  </div>
 
-            <a href="bloomie.html" class="project-link">View case study →</a> 
-          </article>
+  <a href="lina-engine.html" class="project-link">
+    View case study →
+  </a>
+</article>
 
-          <article class="project">
-            <div class="project-number">PROJECT 03</div>
-            <h3>AI Data Analysis</h3>
-            <p>
-              A structured operational-data analysis and LLM evaluation
-              exercise using a clearly labeled synthetic dataset.
-            </p>
+<article class="project">
+  <div class="project-number">PROJECT 02</div>
 
-            <div class="project-tags">
-              <span>Data Analysis</span>
-              <span>LLM Evaluation</span>
-              <span>Research</span>
-            </div>
+  <img
+    class="project-image"
+    src="images/1791931610346.jpg"
+    alt="Bloomie accessible child-development reading companion thumbnail"
+    loading="lazy"
+  >
 
-            <a href="llm-evaluation.html" class="project-link">
-              View case study →
-            </a>
-          </article>
+  <h3>Bloomie</h3>
+
+  <p>
+    An AI-assisted child-development reading companion designed
+    around accessible reading, emotional support, signing,
+    parent insights, and controlled content workflows.
+  </p>
+
+  <div class="project-tags">
+    <span>AI Product</span>
+    <span>Accessibility</span>
+    <span>React Native</span>
+  </div>
+
+  <a href="bloomie.html" class="project-link">
+    View case study →
+  </a>
+</article>
+
+
+<article class="project">
+  <div class="project-number">PROJECT 03</div>
+
+  <img
+    class="project-image"
+    src="images/1791932000163.jpg"
+    alt="AI data analysis and LLM evaluation project thumbnail"
+    loading="lazy"
+  >
+
+  <h3>AI Data Analysis</h3>
+
+  <p>
+    A structured operational-data analysis and LLM evaluation
+    exercise using a clearly labeled synthetic dataset.
+  </p>
+
+  <div class="project-tags">
+    <span>Data Analysis</span>
+    <span>LLM Evaluation</span>
+    <span>Research</span>
+  </div>
+
+  <a href="llm-evaluation.html" class="project-link">
+    View case study →
+  </a>
+</article>
 
          <article class="project">
   <div class="project-number">PROJECT 04</div>
@@ -630,26 +674,46 @@
     Try live demo ↗
   </a>
         </article>```
-          
- <article class="project">
+           
+<article class="project">
   <div class="project-number">PROJECT 05</div>
+
+  <img
+    class="project-image"
+    src="images/1791931746045.jpg"
+    alt="Second Opinion AI code debugger project thumbnail"
+    loading="lazy"
+  >
+
   <h3>Second Opinion — AI Code Debugger</h3>
+
   <p>
     An AI-assisted debugging and code-review tool that identifies
     potential root causes, proposes fixes with verification steps,
     reviews code for bugs, security and performance issues, and
     evaluates fixes suggested by other AI tools.
   </p>
+
+  <div class="project-tags">
+    <span>AI Development</span>
+    <span>Code Review</span>
+    <span>Debugging</span>
+    <span>Software Quality</span>
+  </div>
+
   <a
     href="https://second-opinion-debugger.netlify.app/"
+    class="project-link"
     target="_blank"
     rel="noopener noreferrer"
-  >Try live demo ↗</a>
+  >
+    Try live demo ↗
+  </a>
 </article>
         </div>
       </div>
     </section>
-
+    
     <!-- WRITING, CONTENT & EDITING -->
     <section id="writing-editing">
       <div class="container">

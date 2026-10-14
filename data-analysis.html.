@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A data analysis work sample by Lina Cloud examining internet use across six African countries using World Bank data.">
+  <title>Digital Access Across African Countries | Lina Cloud</title>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --surface: #131925;
+      --border: #293346;
+      --text: #f2f5fb;
+      --muted: #aab5c7;
+      --accent: #8bd5ca;
+      --blue: #91b8ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent); }
+
+    .container {
+      width: min(100% - 36px, 960px);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link { font-size: 0.9rem; }
+
+    main { padding: 55px 0 80px; }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      max-width: 800px;
+      margin: 18px 0;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      line-height: 1.25;
+      margin-top: 0;
+    }
+
+    h3 { line-height: 1.35; }
+
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 24px 0;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .section { margin-top: 55px; }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(20px, 4vw, 32px);
+      margin-top: 20px;
+      min-width: 0;
+    }
+
+    .muted { color: var(--muted); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .stat {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      min-width: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      line-height: 1.25;
+      color: var(--accent);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 145px minmax(0, 1fr) 62px;
+      align-items: center;
+      gap: 12px;
+      margin: 17px 0;
+    }
+
+    .country { font-size: 0.9rem; }
+
+    .track {
+      background: #252e3d;
+      height: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      background: var(--blue);
+      border-radius: 20px;
+    }
+
+    .value {
+      text-align: right;
+      font-size: 0.9rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chart-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 440px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th { color: var(--accent); }
+
+    li { margin: 9px 0; }
+
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 4px 0 4px 18px;
+      margin: 22px 0;
+    }
+
+    .source-link { overflow-wrap: anywhere; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .chart-row {
+        grid-template-columns: 95px minmax(0, 1fr) 48px;
+        gap: 8px;
+      }
+      .country, .value { font-size: 0.8rem; }
+      main { padding-top: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">Lina Cloud</a>
+    <a class="back-link" href="index.html">← Back to portfolio</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <p class="eyebrow">Project 06 · Data Analysis</p>
+
+  <h1>Digital Access Across African Countries</h1>
+
+  <p class="lead">
+    What does public data tell us about internet use across six
+    African countries? This exploratory analysis compares reported
+    internet use, highlights differences, and considers what the
+    figures can and cannot tell us.
+  </p>
+
+  <div class="meta">
+    <span class="tag">Exploratory analysis</span>
+    <span class="tag">World Bank open data</span>
+    <span class="tag">Data interpretation</span>
+    <span class="tag">2023 comparison</span>
+  </div>
+
+  <section class="section">
+    <h2>01 / The question</h2>
+    <div class="panel">
+      <p>
+        Internet connectivity can affect access to education, digital
+        services, information, and economic opportunities. This project
+        examines reported internet use in Nigeria, Ghana, Kenya,
+        South Africa, Rwanda, and Senegal.
+      </p>
+      <p>
+        The primary question is: how different were reported internet
+        use rates across these six countries in 2023?
+      </p>
+      <p class="muted">
+        This is a descriptive comparison. It does not attempt to prove
+        why the countries differ or rank their overall digital
+        development.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>02 / At a glance</h2>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <strong>6</strong>
+        <span>Countries compared</span>
+      </div>
+      <div class="stat">
+        <strong>2023</strong>
+        <span>Comparison year</span>
+      </div>
+      <div class="stat">
+        <strong>38.3 pp</strong>
+        <span>Gap between highest and lowest rates</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>03 / What the data shows</h2>
+
+    <div class="panel">
+      <p class="muted">
+        Individuals using the Internet (% of population), 2023.
+        Countries are ordered from highest to lowest.
+      </p>
+
+      <div class="chart-row">
+        <span class="country">South Africa</span>
+        <div class="track"><div class="bar" style="width:78.3367%"></div></div>
+        <span class="value">78.3%</span>
+      </div>
+
+      <div class="chart-row">
+        <span class="country">Ghana</span>
+        <div class="track"><div class="bar" style="width:70.6743%"></div></div>
+        <span class="value">70.7%</span>
+      </div>
+
+      <div class="chart-row">
+        <span class="country">Senegal</span>
+        <div class="track"><div class="bar" style="width:59.1874%"></div></div>
+        <span class="value">59.2%</span>
+      </div>
+
+      <div class="chart-row">
+        <span class="country">Nigeria</span>
+        <div class="track"><div class="bar" style="width:40.064%"></div></div>
+        <span class="value">40.1%</span>
+      </div>
+
+      <div class="chart-row">
+        <span class="country">Kenya</span>
+        <div class="track"><div class="bar" style="width:32.0704%"></div></div>
+        <span class="value">32.1%</span>
+      </div>
+
+      <div class="chart-row">
+        <span class="country">Rwanda</span>
+        <div class="track"><div class="bar" style="width:28.8058%"></div></div>
+        <span class="value">28.8%</span>
+      </div>
+
+      <p class="chart-note">
+        Bars use a common 0–100% scale. Values are rounded to one
+        decimal place for readability.
+      </p>
+    </div>
+
+    <div class="panel table-wrap">
+      <h3>Reported rates</h3>
+      <table>
+        <thead>
+          <tr><th>Country</th><th>Rate in 2023</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>South Africa</td><td>78.3%</td></tr>
+          <tr><td>Ghana</td><td>70.7%</td></tr>
+          <tr><td>Senegal</td><td>59.2%</td></tr>
+          <tr><td>Nigeria</td><td>40.1%</td></tr>
+          <tr><td>Kenya</td><td>32.1%</td></tr>
+          <tr><td>Rwanda</td><td>28.8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>04 / Key findings</h2>
+
+    <div class="panel">
+      <h3>South Africa recorded the highest rate</h3>
+      <p>
+        South Africa's reported rate was approximately 78.3%, the
+        highest among the six countries in this comparison.
+      </p>
+
+      <h3>Internet use varied substantially</h3>
+      <p>
+        The difference between South Africa (78.3%) and Rwanda
+        (28.8%) was about 49.5 percentage points. This describes
+        the range across this selected group, not the whole continent.
+      </p>
+
+      <h3>Nigeria was below three countries in this group</h3>
+      <p>
+        Nigeria's reported rate was approximately 40.1%, below
+        South Africa, Ghana, and Senegal, but above Kenya and Rwanda.
+      </p>
+
+      <div class="callout">
+        <strong>Interpretation:</strong> the figures show differences
+        in reported internet use. They do not by themselves explain
+        the causes of those differences.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>05 / Method</h2>
+
+    <div class="panel">
+      <ol>
+        <li>
+          <strong>Define the measure.</strong> Use the World Bank
+          indicator “Individuals using the Internet (% of population).”
+        </li>
+        <li>
+          <strong>Select the comparison group.</strong> Retrieve
+          reported values for six named countries for 2023.
+        </li>
+        <li>
+          <strong>Compare like with like.</strong> Use the same
+          indicator and year for every country.
+        </li>
+        <li>
+          <strong>Calculate the range.</strong> Subtract the lowest
+          reported rate from the highest.
+        </li>
+        <li>
+          <strong>Communicate carefully.</strong> Round percentages
+          to one decimal place and avoid treating association or
+          difference as proof of cause.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>06 / Limitations</h2>
+
+    <div class="panel">
+      <ul>
+        <li>
+          The comparison covers six selected countries, not all
+          African countries.
+        </li>
+        <li>
+          The indicator measures reported internet use. It does not
+          directly measure connection quality, affordability, speed,
+          or frequency of use.
+        </li>
+        <li>
+          International datasets may be revised, and reporting
+          methods or data availability may differ.
+        </li>
+        <li>
+          This is a descriptive comparison. Additional data and
+          methods would be needed to investigate causes or outcomes.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>07 / Source and reproducibility</h2>
+
+    <div class="panel">
+      <p>
+        <strong>Source:</strong> World Bank, World Development
+        Indicators.
+      </p>
+      <p>
+        <strong>Indicator:</strong> IT.NET.USER.ZS — Individuals
+        using the Internet (% of population).
+      </p>
+      <p>
+        <strong>Comparison year:</strong> 2023.
+      </p>
+      <p class="source-link">
+        <a href="https://api.worldbank.org/v2/country/NGA;GHA;KEN;ZAF;RWA;SEN/indicator/IT.NET.USER.ZS?date=2015:2023&amp;format=json&amp;per_page=2000"
+           target="_blank" rel="noopener noreferrer">
+          Open the World Bank data response ↗
+        </a>
+      </p>
+      <p class="source-link">
+        <a href="https://data.worldbank.org/indicator/IT.NET.USER.ZS"
+           target="_blank" rel="noopener noreferrer">
+          View the indicator on the World Bank website ↗
+        </a>
+      </p>
+      <p class="muted">
+        Values shown are the returned World Bank observations for
+        2023, rounded for presentation. This page is a descriptive
+        work sample, not a causal study.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What this project demonstrates</h2>
+    <div class="panel">
+      <p>
+        This work sample demonstrates question framing, use of a
+        public data source, comparison of quantitative observations,
+        clear visual communication, and attention to analytical
+        limitations.
+      </p>
+      <p>
+        The next step for a deeper analysis would be to examine
+        country-level trends over time, investigate data consistency,
+        and combine internet-use figures with additional indicators
+        such as affordability or network coverage.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Lina Cloud · Data Analysis Work Sample</p>
+    <a href="index.html">← Return to Lina Cloud's main portfolio</a>
+  </div>
+</footer>
+
+</body>
+</html>

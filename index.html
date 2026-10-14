@@ -290,46 +290,119 @@
     }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 25px;
-    }
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 28px;
+  margin-top: 28px;
+  min-width: 0;
+}
 
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-    }
+.about-portrait {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
 
-    .panel h3 {
-      font-size: 1.15rem;
-      margin-bottom: 14px;
-    }
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 18px 18px 0 0;
+}
 
-    .panel p {
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
+.portrait-caption {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 18px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
 
-    .focus-list {
-      display: grid;
-      gap: 14px;
-      list-style: none;
-    }
+.portrait-dot {
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 
-    .focus-list li {
-      display: flex;
-      gap: 12px;
-      color: #d6dbea;
-      font-size: 0.9rem;
-    }
+.about-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 20px;
+  min-width: 0;
+}
 
-    .focus-list li::before {
-      content: "↗";
-      color: var(--accent);
-      font-weight: 700;
-    }
+.panel {
+  min-width: 0;
+  padding: 26px;
+  overflow-wrap: anywhere;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.panel h3 {
+  margin-bottom: 14px;
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+
+.focus-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.focus-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #d6dbea;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.focus-list li::before {
+  content: "↗";
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .about-portrait img {
+    max-height: 480px;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+}
 
     .project-grid {
       display: grid;
@@ -587,38 +660,41 @@
       line-height: 1.9;
     }
 
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 30px;
-    }
+  .certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 35px;
+  align-items: start;
+}
 
-    .cert-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--surface);
-    }
+.certificate-card {
+  min-width: 0;
+  overflow: hidden;
+}
 
-    .cert-card h3 {
-      font-size: 1rem;
-      margin-bottom: 7px;
-    }
+.certificate-image-wrap {
+  padding: 14px;
+  background: #171a22;
+  border-bottom: 1px solid var(--border);
+}
 
-    .cert-card p {
-      color: var(--muted);
-      font-size: 0.83rem;
-    }
+.certificate-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.414 / 1;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+}
 
-    .cert-card a {
-      flex-shrink: 0;
-    }
-
+@media (max-width: 700px) {
+  .certificate-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    
     .contact-panel {
       display: flex;
       align-items: center;
@@ -985,59 +1061,64 @@
     </section>
 
     <section id="about">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-label">01 — About</div>
-            <h2 class="section-title">How I approach problems</h2>
-            <p class="section-intro">
-              I’m interested in what makes AI outputs reliable, what makes
-              digital products genuinely useful, and how technology can
-              turn complicated tasks into clearer workflows.
-            </p>
-          </div>
-        </div>
-    
-<div class="about-grid">
+  <div class="container">
 
-  <div class="about-portrait">
-    <img
-      src="1791937279779.jpg"
-      alt="Lina Cloud — AI and digital technology practitioner"
-      loading="lazy"
-    >
-    <div class="portrait-caption">
-      <span class="portrait-dot"></span>
-      <span>Lina Cloud · AI & Digital Solutions</span>
+    <div class="section-heading">
+      <div>
+        <div class="section-label">01 — About</div>
+        <h2 class="section-title">How I approach problems</h2>
+        <p class="section-intro">
+          I’m interested in what makes AI outputs reliable, what makes
+          digital products genuinely useful, and how technology can
+          turn complicated tasks into clearer workflows.
+        </p>
+      </div>
     </div>
+
+    <div class="about-grid">
+
+      <div class="about-portrait">
+        <img
+          src="1791937279779.jpg"
+          alt="Lina Cloud — AI and digital technology practitioner"
+          loading="lazy"
+        >
+
+        <div class="portrait-caption">
+          <span class="portrait-dot"></span>
+          <span>Lina Cloud · AI &amp; Digital Solutions</span>
+        </div>
+      </div>
+
+      <div class="about-details">
+
+        <article class="panel">
+          <h3>My approach</h3>
+          <p>
+            I explore problems by breaking them into smaller questions,
+            testing ideas, comparing outputs, identifying limitations,
+            and improving the result. I use AI tools as collaborators,
+            while treating verification, clarity, and honest reporting
+            as important parts of the work.
+          </p>
+        </article>
+
+        <article class="panel">
+          <h3>Areas I’m developing</h3>
+          <ul class="focus-list">
+            <li>Evaluating AI responses and instruction following</li>
+            <li>Data interpretation and analytical reporting</li>
+            <li>Text-pattern analysis and browser-based tools</li>
+            <li>AI-assisted development and workflow automation</li>
+            <li>Writing, editing, and digital content production</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+
   </div>
-  
-  <div class="about-details">
-    <article class="panel">
-      <h3>My approach</h3>
-      <p>
-        I explore problems by breaking them into smaller questions,
-        testing ideas, comparing outputs, identifying limitations,
-        and improving the result. I use AI tools as collaborators,
-        while treating verification, clarity, and honest reporting
-        as important parts of the work.
-      </p>
-    </article>
-
-    <article class="panel">
-      <h3>Areas I’m developing</h3>
-      <ul class="focus-list">
-        <li>Evaluating AI responses and instruction following</li>
-        <li>Data interpretation and analytical reporting</li>
-        <li>Text-pattern analysis and browser-based tools</li>
-        <li>AI-assisted development and workflow automation</li>
-        <li>Writing, editing, and digital content production</li>
-      </ul>
-    </article>
-  </div>
-
-</div>
-
+    </section>
 
     <section id="projects">
       <div class="container">
@@ -1476,19 +1557,18 @@
   <p class="section-description">
     A selection of my completed learning credentials in artificial
     intelligence and software engineering. Each certificate includes
-    a direct link to Saylor Academy's verification page.
+    an optional link to Saylor Academy's verification page.
   </p>
 
   <div class="certificate-grid">
 
     <article class="certificate-card">
       <div class="certificate-image-wrap">
-        <iframe
-          class="certificate-preview"
-          src="8742446237PO(1).pdf"
-          title="CS205 Building with Artificial Intelligence certificate"
+        <img
+          class="certificate-image"
+          src="cs205-certificate.png"
+          alt="CS205 Building with Artificial Intelligence certificate issued to Pascaline Orji"
           loading="lazy">
-        </iframe>
       </div>
 
       <div class="certificate-content">
@@ -1507,12 +1587,11 @@
 
     <article class="certificate-card">
       <div class="certificate-image-wrap">
-        <iframe
-          class="certificate-preview"
-          src="6659638974PO.pdf"
-          title="CS302 Software Engineering certificate"
+        <img
+          class="certificate-image"
+          src="cs302-certificate.png"
+          alt="CS302 Software Engineering certificate issued to Pascaline Orji"
           loading="lazy">
-        </iframe>
       </div>
 
       <div class="certificate-content">
@@ -1542,24 +1621,31 @@
   </div>
 </section>
 
-  </main>
+</main>
 
-  <footer>
-    <div class="container footer-inner">
-      <p>© <span id="current-year">2026</span> Lina Cloud. Built with curiosity and purpose.</p>
+<footer>
+  <div class="container footer-inner">
+    <p>© <span id="current-year">2026</span> Lina Cloud. Built with curiosity and purpose.</p>
 
-      <div class="footer-links">
-        <a href="#home">Back to top ↑</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
+    <div class="footer-links">
+      <a
+        href="https://www.linkedin.com/in/lina-cloud-21bb10412/"
+        target="_blank"
+        rel="noopener noreferrer">
+        LinkedIn ↗
+      </a>
+      <a href="#home">Back to top ↑</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    document.getElementById("current-year").textContent =
-      new Date().getFullYear();
-  </script>
+<script>
+  document.getElementById("current-year").textContent =
+    new Date().getFullYear();
+</script>
 
 </body>
-</html>
+      </html>
+

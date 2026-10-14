@@ -680,11 +680,92 @@
   text-decoration: underline;
 }
 
+   .analysis-visual-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  gap: 16px;
+}
+
+.beyond-data-card {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.beyond-data-eyebrow {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.beyond-data-card > h3 {
+  font-size: 1.2rem;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.beyond-data-intro {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.beyond-data-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.beyond-data-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+
+.beyond-data-item h4 {
+  font-size: 0.91rem;
+  line-height: 1.5;
+  margin: 0 0 4px;
+}
+
+.beyond-data-item p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
+  .beyond-data-card {
+    padding: 18px;
+  }
+
+  .beyond-data-card > h3 {
+    font-size: 1.15rem;
+  }
+
   .analysis-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
+}
 
   .analysis-image {
   display: block;
@@ -1493,7 +1574,7 @@
       </div>
     </section>
 
-    <section id="data-analysis">
+<section id="data-analysis">
   <div class="container">
     <div class="section-label">04 — DATA ANALYSIS</div>
     <h2 class="section-title">From information to insight.</h2>
@@ -1505,12 +1586,62 @@
     </p>
 
     <div class="analysis-grid">
-      <img
-        class="analysis-image"
-        src="1791945997989.jpg"
-        alt="Data analysis case study preview"
-        loading="lazy"
-      >
+
+      <div class="analysis-visual-column">
+        <img
+          class="analysis-image"
+          src="1791945997989.jpg"
+          alt="Data exploration and visualization interface"
+          loading="lazy"
+        >
+
+        <div class="beyond-data-card">
+          <p class="beyond-data-eyebrow">BEYOND THE DATA</p>
+
+          <h3>Building ideas into intelligent experiences.</h3>
+
+          <p class="beyond-data-intro">
+            My work extends into AI-powered workflows, thoughtful
+            digital products, and human-centred technology.
+            I explore how research, intelligent systems, and
+            creative problem-solving can come together to make
+            digital experiences more useful and meaningful.
+          </p>
+
+          <div class="beyond-data-item">
+            <span class="beyond-data-icon">✳</span>
+            <div>
+              <h4>AI &amp; Intelligent Workflows</h4>
+              <p>
+                Connecting AI reasoning, automation, and
+                practical problem-solving.
+              </p>
+            </div>
+          </div>
+
+          <div class="beyond-data-item">
+            <span class="beyond-data-icon">◇</span>
+            <div>
+              <h4>Digital Product Experiences</h4>
+              <p>
+                Exploring accessible, intuitive products
+                shaped around real human needs.
+              </p>
+            </div>
+          </div>
+
+          <div class="beyond-data-item">
+            <span class="beyond-data-icon">↗</span>
+            <div>
+              <h4>Systems &amp; Innovation</h4>
+              <p>
+                Bringing structured thinking and creative
+                engineering together to solve problems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="analysis-content">
         <p class="analysis-eyebrow">
@@ -1563,6 +1694,7 @@
           >World Bank — Internet Use ↗</a>
         </p>
       </div>
+
     </div>
   </div>
 </section>

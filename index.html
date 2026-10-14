@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#0b0d12">
 
   <title>Lina Cloud | AI Evaluation, Data Analysis & Automation</title>
-
   <meta name="description" content="Explore Lina Cloud's portfolio in AI evaluation, data analysis, text analysis, AI-assisted development, automation, and digital content.">
   <meta name="author" content="Lina Cloud">
   <meta property="og:title" content="Lina Cloud | AI & Digital Portfolio">
@@ -32,7 +31,7 @@
       --max-width: 1160px;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -51,6 +50,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -62,21 +66,22 @@
       border-radius: 4px;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
     .container {
       width: min(var(--max-width), calc(100% - 44px));
-      margin: 0 auto;
+      margin-inline: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+      line-height: 1.25;
+      letter-spacing: -0.8px;
     }
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(11, 13, 18, 0.92);
+      background: rgba(11, 13, 18, 0.94);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
@@ -97,7 +102,8 @@
       white-space: nowrap;
     }
 
-    .logo span {
+    .logo span,
+    .hero-highlight {
       color: var(--accent);
     }
 
@@ -105,7 +111,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 23px;
+      gap: 12px 22px;
       list-style: none;
     }
 
@@ -115,21 +121,22 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .footer-links a:hover {
       color: var(--accent);
     }
 
-    .nav-cta {
+    .nav-links .nav-cta {
+      padding: 8px 14px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 9px 15px;
-      color: var(--text) !important;
+      color: var(--text);
     }
 
     .hero {
-      padding: 110px 0 100px;
       position: relative;
       overflow: hidden;
+      padding: 110px 0 100px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -147,8 +154,8 @@
     }
 
     .hero-content {
-      max-width: 850px;
       position: relative;
+      max-width: 850px;
     }
 
     .eyebrow,
@@ -174,34 +181,28 @@
       background: var(--accent);
     }
 
-    h1, h2, h3 {
-      font-family: "Manrope", sans-serif;
-      line-height: 1.2;
-      letter-spacing: -0.8px;
-    }
-
     h1 {
+      max-width: 850px;
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 800;
-      max-width: 850px;
-    }
-
-    .hero-highlight {
-      color: var(--accent);
     }
 
     .hero-description {
-      color: var(--muted);
       max-width: 650px;
       margin-top: 25px;
+      color: var(--muted);
       font-size: 1.05rem;
       line-height: 1.9;
     }
 
-    .hero-actions {
+    .hero-actions,
+    .hero-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
+      gap: 12px;
+    }
+
+    .hero-actions {
       margin-top: 32px;
     }
 
@@ -211,6 +212,7 @@
       justify-content: center;
       gap: 8px;
       padding: 12px 19px;
+      border: 1px solid transparent;
       border-radius: 9px;
       font-size: 0.9rem;
       font-weight: 700;
@@ -231,7 +233,7 @@
     }
 
     .button-secondary {
-      border: 1px solid var(--border);
+      border-color: var(--border);
       color: var(--text);
     }
 
@@ -240,8 +242,6 @@
     }
 
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
       gap: 9px;
       margin-top: 35px;
     }
@@ -249,12 +249,12 @@
     .tag {
       display: inline-flex;
       align-items: center;
+      padding: 6px 11px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 6px 11px;
-      font-size: 0.74rem;
-      color: #c2cada;
       background: rgba(255,255,255,0.02);
+      color: #c2cada;
+      font-size: 0.74rem;
     }
 
     section {
@@ -264,145 +264,124 @@
 
     .section-heading {
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       justify-content: space-between;
       gap: 25px;
       margin-bottom: 35px;
     }
 
     .section-title {
+      margin-top: 12px;
       font-size: clamp(1.9rem, 4vw, 2.8rem);
       font-weight: 800;
-      margin-top: 12px;
     }
 
     .section-intro {
-      color: var(--muted);
       max-width: 680px;
       margin-top: 15px;
+      color: var(--muted);
       line-height: 1.85;
     }
 
     .section-note {
+      max-width: 250px;
       color: var(--muted);
       font-size: 0.8rem;
-      max-width: 250px;
     }
 
+    /* ABOUT */
+
     .about-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-  gap: 28px;
-  margin-top: 28px;
-  min-width: 0;
-}
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+      gap: 28px;
+      margin-top: 28px;
+    }
 
-.about-portrait {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--surface);
-}
+    .about-portrait {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
 
-.about-portrait img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 520px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 18px 18px 0 0;
-}
+    .about-portrait img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 17px 17px 0 0;
+    }
 
-.portrait-caption {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 16px 18px;
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.5;
-}
+    .portrait-caption {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px 18px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
 
-.portrait-dot {
-  flex: 0 0 8px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-}
+    .portrait-dot {
+      flex: 0 0 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-.about-details {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-content: start;
-  gap: 20px;
-  min-width: 0;
-}
+    .about-details {
+      display: grid;
+      gap: 20px;
+      min-width: 0;
+    }
 
-.panel {
-  min-width: 0;
-  padding: 26px;
-  overflow-wrap: anywhere;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
+    .panel {
+      min-width: 0;
+      padding: 26px;
+      overflow-wrap: anywhere;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
 
-.panel h3 {
-  margin-bottom: 14px;
-  font-size: 1.15rem;
-  line-height: 1.4;
-}
+    .panel h3 {
+      margin-bottom: 14px;
+      font-size: 1.15rem;
+    }
 
-.panel p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.8;
-}
+    .panel p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.8;
+    }
 
-.focus-list {
-  display: grid;
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .focus-list {
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
 
-.focus-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  color: #d6dbea;
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
+    .focus-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #d6dbea;
+      font-size: 0.9rem;
+    }
 
-.focus-list li::before {
-  content: "↗";
-  flex: 0 0 auto;
-  color: var(--accent);
-  font-weight: 700;
-}
+    .focus-list li::before {
+      content: "↗";
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-@media (max-width: 760px) {
-  .about-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 22px;
-  }
-
-  .about-portrait img {
-    max-height: 480px;
-  }
-
-  .panel {
-    padding: 22px;
-  }
-}
+    /* PROJECTS */
 
     .project-grid {
       display: grid;
@@ -411,16 +390,19 @@
     }
 
     .project {
+      display: flex;
+      flex-direction: column;
       min-width: 0;
+      padding: 16px;
       overflow: hidden;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 16px;
       transition: border-color 0.25s, transform 0.25s;
     }
 
-    .project:hover {
+    .project:hover,
+    .certificate-card:hover {
       border-color: #526046;
       transform: translateY(-3px);
     }
@@ -430,27 +412,27 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       object-position: center;
-      border-radius: 11px;
       margin-bottom: 21px;
       border: 1px solid #292e3b;
+      border-radius: 11px;
       background: var(--surface-2);
     }
 
     .project-number {
+      margin-bottom: 10px;
       color: var(--accent);
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 1.7px;
       text-transform: uppercase;
-      margin-bottom: 10px;
     }
 
     .project h3 {
-      font-size: 1.35rem;
       margin-bottom: 11px;
+      font-size: 1.35rem;
     }
 
-    .project p {
+    .project > p {
       color: var(--muted);
       font-size: 0.91rem;
       line-height: 1.8;
@@ -464,10 +446,10 @@
     }
 
     .project-tags span {
-      background: #1a1f2a;
+      padding: 5px 8px;
       border: 1px solid #2b3140;
       border-radius: 6px;
-      padding: 5px 8px;
+      background: #1a1f2a;
       color: #c3ccdc;
       font-size: 0.7rem;
     }
@@ -477,15 +459,14 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 18px;
-      margin-top: 22px;
-      padding-top: 17px;
-      border-top: 1px solid var(--border);
+      margin-top: auto;
+      padding-top: 22px;
     }
 
     .text-link {
       color: var(--accent);
-      font-weight: 700;
       font-size: 0.85rem;
+      font-weight: 700;
     }
 
     .text-link:hover {
@@ -507,6 +488,8 @@
       color: #e5d997;
       font-size: 0.72rem;
     }
+
+    /* AI EVALUATION */
 
     .special-section {
       background: linear-gradient(180deg, rgba(185,243,107,0.025), transparent 60%);
@@ -533,16 +516,16 @@
       justify-content: center;
       width: 42px;
       height: 42px;
+      margin-bottom: 19px;
       border-radius: 11px;
       background: var(--accent-dark);
       color: var(--accent);
       font-size: 1.2rem;
-      margin-bottom: 19px;
     }
 
     .evaluation-card h3 {
-      font-size: 1.08rem;
       margin-bottom: 11px;
+      font-size: 1.08rem;
     }
 
     .evaluation-card p {
@@ -551,246 +534,133 @@
       line-height: 1.85;
     }
 
-.analysis-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  align-items: start;
-  gap: 32px;
-  margin-top: 30px;
-}
+    /* DATA ANALYSIS */
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+      gap: 35px;
+      margin-top: 30px;
+    }
 
     .analysis-image {
-  display: block;
-  width: 100%;
-  height: 390px;
-  object-fit: contain;
-  object-position: center;
-  align-self: start;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--surface);
-}
+      display: block;
+      width: 100%;
+      height: auto;
+      align-self: start;
+      object-fit: contain;
+      object-position: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
 
-.analysis-content {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+    .analysis-content {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
 
-.analysis-content h3 {
-  font-size: 1.45rem;
-  line-height: 1.4;
-  margin-bottom: 15px;
-}
+    .analysis-content h3 {
+      margin-bottom: 15px;
+      font-size: 1.45rem;
+      line-height: 1.4;
+    }
 
-.analysis-content h4 {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 22px 0 10px;
-}
+    .analysis-content h4 {
+      margin: 22px 0 10px;
+      font-size: 1rem;
+    }
 
-.analysis-content p {
-  color: var(--muted);
-  font-size: 0.94rem;
-  line-height: 1.8;
-  margin-bottom: 15px;
-}
+    .analysis-content p {
+      margin-bottom: 15px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.8;
+    }
 
-.analysis-content ul {
-  list-style: none;
-  display: grid;
-  gap: 10px;
-  margin: 12px 0 20px;
-  padding: 0;
-}
+    .analysis-eyebrow {
+      margin-bottom: 12px !important;
+      color: var(--accent) !important;
+      font-size: 0.76rem !important;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
 
-.analysis-content li {
-  color: #d4d9e5;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
+    .analysis-highlight {
+      padding: 20px;
+      margin: 8px 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+    }
 
-.analysis-content li::before {
-  content: "✓";
-  color: var(--accent);
-  margin-right: 10px;
-}
+    .analysis-stat {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      font-weight: 750;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
 
-.analysis-eyebrow {
-  color: var(--accent) !important;
-  font-size: 0.76rem !important;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.6 !important;
-  margin-bottom: 12px !important;
-}
+    .analysis-stat-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
 
-.analysis-highlight {
-  padding: 20px;
-  margin: 8px 0 12px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-}
+    .analysis-highlight p {
+      margin-bottom: 0;
+    }
 
-.analysis-highlight .analysis-stat {
-  display: block;
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  font-weight: 750;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-  margin-bottom: 8px;
-}
+    .analysis-content ul {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 20px;
+      padding: 0;
+      list-style: none;
+    }
 
-.analysis-highlight .analysis-stat-label {
-  display: block;
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
+    .analysis-content li {
+      color: #d4d9e5;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
 
-.analysis-highlight p {
-  margin-bottom: 0;
-}
+    .analysis-content li::before {
+      content: "✓";
+      margin-right: 10px;
+      color: var(--accent);
+    }
 
-.analysis-content .btn {
-  align-self: flex-start;
-  margin-top: 5px;
-  max-width: 100%;
-  white-space: normal;
-  text-align: center;
-}
+    .analysis-content .btn {
+      align-self: flex-start;
+      max-width: 100%;
+      margin-top: 5px;
+      white-space: normal;
+      text-align: center;
+    }
 
-.analysis-content .analysis-source {
-  font-size: 0.78rem;
-  line-height: 1.7;
-  margin-top: 18px;
-  margin-bottom: 0;
-  overflow-wrap: anywhere;
-}
+    .analysis-source {
+      margin-top: 18px !important;
+      margin-bottom: 0 !important;
+      overflow-wrap: anywhere;
+      font-size: 0.78rem !important;
+    }
 
-.analysis-source a {
-  color: var(--accent);
-  text-decoration: none;
-}
+    .analysis-source a {
+      color: var(--accent);
+    }
 
-.analysis-source a:hover {
-  text-decoration: underline;
-}
+    .analysis-source a:hover {
+      text-decoration: underline;
+    }
 
-   .analysis-visual-column {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-self: start;
-  gap: 16px;
-}
-
-.beyond-data-card {
-  padding: 22px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--surface);
-}
-
-.beyond-data-eyebrow {
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.beyond-data-card > h3 {
-  font-size: 1.2rem;
-  line-height: 1.45;
-  margin-bottom: 10px;
-}
-
-.beyond-data-intro {
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.75;
-  margin-bottom: 18px;
-}
-
-.beyond-data-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding-top: 14px;
-  margin-top: 14px;
-  border-top: 1px solid var(--border);
-}
-
-.beyond-data-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 34px;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--accent);
-  font-size: 1.15rem;
-}
-
-.beyond-data-item h4 {
-  font-size: 0.91rem;
-  line-height: 1.5;
-  margin: 0 0 4px;
-}
-
-.beyond-data-item p {
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.65;
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .beyond-data-card {
-    padding: 18px;
-  }
-
-  .beyond-data-card > h3 {
-    font-size: 1.15rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .analysis-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-  }
-}
-
-  .analysis-image {
-  display: block;
-  width: 100%;
-  height: 320px;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 15px;
-  background: var(--surface);
-  }
- 
-  .analysis-content h3 {
-    font-size: 1.35rem;
-  }
-
-  .analysis-highlight {
-    padding: 17px;
-  }
-
-  .analysis-content .btn {
-    align-self: stretch;
-  }
-}
+    /* WRITING GRID — ORIGINAL THREE-COLUMN DESKTOP LAYOUT */
 
     .writing-grid {
       display: grid;
@@ -803,11 +673,18 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      min-width: 0;
       min-height: 225px;
       padding: 25px;
       border: 1px solid var(--border);
       border-radius: 15px;
       background: var(--surface);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .writing-card:hover {
+      border-color: #526046;
+      transform: translateY(-3px);
     }
 
     .writing-card .card-icon {
@@ -815,19 +692,22 @@
     }
 
     .writing-card h3 {
-      font-size: 1.08rem;
       margin-bottom: 10px;
+      font-size: 1.08rem;
     }
 
     .writing-card p {
+      margin-bottom: 20px;
       color: var(--muted);
       font-size: 0.86rem;
-      margin-bottom: 20px;
+      line-height: 1.8;
     }
 
     .writing-card .text-link {
       margin-top: auto;
     }
+
+    /* SKILLS */
 
     .skills-grid {
       display: grid;
@@ -837,6 +717,7 @@
     }
 
     .skill-card {
+      min-width: 0;
       padding: 23px;
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -844,8 +725,8 @@
     }
 
     .skill-card h3 {
-      font-size: 1rem;
       margin-bottom: 15px;
+      font-size: 1rem;
     }
 
     .skill-card p {
@@ -854,41 +735,97 @@
       line-height: 1.9;
     }
 
-  .certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 35px;
-  align-items: start;
-}
+    /* CERTIFICATES */
 
-.certificate-card {
-  min-width: 0;
-  overflow: hidden;
-}
+    .certificate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: 24px;
+      margin-top: 35px;
+    }
 
-.certificate-image-wrap {
-  padding: 14px;
-  background: #171a22;
-  border-bottom: 1px solid var(--border);
-}
+    .certificate-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: border-color 0.25s, transform 0.25s;
+    }
 
-.certificate-image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1.414 / 1;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  background: #fff;
-}
+    .certificate-image-wrap {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      background: #171a22;
+    }
 
-@media (max-width: 700px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-}
-    
+    .certificate-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.414 / 1;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .certificate-content {
+      padding: 24px;
+    }
+
+    .certificate-issuer {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    .certificate-content h3 {
+      margin-bottom: 20px;
+      font-size: 1.25rem;
+    }
+
+    .verify-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #10140b;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .verify-button:hover {
+      background: #d2f99e;
+    }
+
+    .certificate-note {
+      margin-top: 30px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .certificate-note h3 {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .certificate-note p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+
     .contact-panel {
       display: flex;
       align-items: center;
@@ -901,8 +838,8 @@
     }
 
     .contact-panel h2 {
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
       margin: 12px 0;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
     }
 
     .contact-panel p {
@@ -910,6 +847,8 @@
       color: var(--muted);
       font-size: 0.93rem;
     }
+
+    /* FOOTER */
 
     footer {
       padding: 28px 0;
@@ -938,78 +877,24 @@
       font-size: 0.82rem;
     }
 
-    .footer-links a:hover {
-      color: var(--accent);
-    }
+    /* TABLET */
 
     @media (max-width: 850px) {
       .nav {
-        padding: 16px 0;
         align-items: flex-start;
         flex-direction: column;
         gap: 14px;
-      }
-
-      .nav-links {
-        gap: 12px 18px;
+        padding: 16px 0;
       }
 
       .about-grid,
       .analysis-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
-.about-portrait {
-  min-width: 0;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.about-portrait img {
-  width: 100%;
-  flex: 1;
-  min-height: 300px;
-  max-height: 480px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 12px;
-  background: var(--surface-2);
-}
-
-.portrait-caption {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 15px 5px 4px;
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-
-.portrait-dot {
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.about-details {
-  display: grid;
-  align-content: center;
-  gap: 18px;
-}
-
-@media (max-width: 850px) {
-  .about-portrait img {
-    min-height: 280px;
-    max-height: 420px;
-  }
-}
+      .about-portrait img {
+        max-height: 480px;
+      }
 
       .cards,
       .skills-grid {
@@ -1019,7 +904,15 @@
       .writing-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .analysis-image {
+        width: 100%;
+        height: auto;
+        max-height: none;
+      }
     }
+
+    /* MOBILE */
 
     @media (max-width: 560px) {
       .container {
@@ -1047,165 +940,78 @@
         max-width: 100%;
       }
 
+      .nav-links {
+        gap: 10px 15px;
+      }
+
       .project-grid,
       .cards,
       .skills-grid,
       .writing-grid,
       .certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 35px;
-  align-items: start;
-}
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-.certificate-card {
-  min-width: 0;
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color 0.25s, transform 0.25s;
-}
+      .writing-card {
+        min-height: 210px;
+        padding: 22px;
+      }
 
-.certificate-card:hover {
-  border-color: #526046;
-  transform: translateY(-3px);
-}
+      .evaluation-card,
+      .skill-card {
+        padding: 22px;
+      }
 
-.certificate-image-wrap {
-  padding: 14px;
-  background: #171a22;
-  border-bottom: 1px solid var(--border);
-}
+      .analysis-grid {
+        gap: 24px;
+      }
 
-.certificate-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1.414 / 1;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 8px;
-  background: #fff;
-}
+      .analysis-content h3 {
+        font-size: 1.35rem;
+      }
 
-.certificate-content {
-  padding: 24px;
-}
+      .analysis-highlight {
+        padding: 17px;
+      }
 
-.certificate-issuer {
-  color: var(--accent);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  margin-bottom: 10px;
-}
+      .analysis-content .btn {
+        align-self: stretch;
+      }
 
-.certificate-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-}
+      .certificate-content {
+        padding: 20px;
+      }
 
-.certificate-holder {
-  color: var(--muted);
-  font-size: 0.83rem;
-  margin-bottom: 20px;
-}
+      .contact-panel {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 25px;
+      }
 
-.certificate-id {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: #0c0f15;
-}
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
 
-.certificate-id span {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
 
-.certificate-id code {
-  color: var(--accent);
-  font-size: 0.84rem;
-  overflow-wrap: anywhere;
-}
-
-.verify-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 13px 16px;
-  border-radius: 9px;
-  background: var(--accent);
-  color: #10140b;
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-align: center;
-  transition: background 0.2s;
-}
-
-.verify-button:hover {
-  background: #d2f99e;
-}
-
-@media (max-width: 700px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-}
-   
-      .certificate-preview {
-  display: block;
-  width: 100%;
-  height: 360px;
-  border: none;
-  border-radius: 8px;
-  background: #fff;
-}
-
-.certificate-note {
-  margin-top: 30px;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.certificate-note h3 {
-  margin-bottom: 12px;
-}
-
-.certificate-note p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-@media (max-width: 700px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .certificate-preview {
-    height: 320px;
-  }
-}
- 
-      </style>
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <header class="site-header">
     <nav class="nav container" aria-label="Main navigation">
-      <a href="#" class="logo" aria-label="Lina Cloud home">Lina<span>Cloud</span></a>
+      <a href="#home" class="logo" aria-label="Lina Cloud home">Lina<span>Cloud</span></a>
 
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -1255,63 +1061,56 @@
     </section>
 
     <section id="about">
-  <div class="container">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="section-label">01 — About</div>
+            <h2 class="section-title">How I approach problems</h2>
+            <p class="section-intro">
+              I’m interested in what makes AI outputs reliable, what makes
+              digital products genuinely useful, and how technology can
+              turn complicated tasks into clearer workflows.
+            </p>
+          </div>
+        </div>
 
-    <div class="section-heading">
-      <div>
-        <div class="section-label">01 — About</div>
-        <h2 class="section-title">How I approach problems</h2>
-        <p class="section-intro">
-          I’m interested in what makes AI outputs reliable, what makes
-          digital products genuinely useful, and how technology can
-          turn complicated tasks into clearer workflows.
-        </p>
-      </div>
-    </div>
+        <div class="about-grid">
+          <div class="about-portrait">
+            <img src="1791937279779.jpg"
+                 alt="Lina Cloud — AI and digital technology practitioner"
+                 loading="lazy">
 
-    <div class="about-grid">
+            <div class="portrait-caption">
+              <span class="portrait-dot"></span>
+              <span>Lina Cloud · AI &amp; Digital Solutions</span>
+            </div>
+          </div>
 
-      <div class="about-portrait">
-        <img
-          src="1791937279779.jpg"
-          alt="Lina Cloud — AI and digital technology practitioner"
-          loading="lazy"
-        >
+          <div class="about-details">
+            <article class="panel">
+              <h3>My approach</h3>
+              <p>
+                I explore problems by breaking them into smaller questions,
+                testing ideas, comparing outputs, identifying limitations,
+                and improving the result. I use AI tools as collaborators,
+                while treating verification, clarity, and honest reporting
+                as important parts of the work.
+              </p>
+            </article>
 
-        <div class="portrait-caption">
-          <span class="portrait-dot"></span>
-          <span>Lina Cloud · AI &amp; Digital Solutions</span>
+            <article class="panel">
+              <h3>Areas I’m developing</h3>
+              <ul class="focus-list">
+                <li>Evaluating AI responses and instruction following</li>
+                <li>Data interpretation and analytical reporting</li>
+                <li>Text-pattern analysis and browser-based tools</li>
+                <li>AI-assisted development and workflow automation</li>
+                <li>Writing, editing, and digital content production</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
-
-      <div class="about-details">
-
-        <article class="panel">
-          <h3>My approach</h3>
-          <p>
-            I explore problems by breaking them into smaller questions,
-            testing ideas, comparing outputs, identifying limitations,
-            and improving the result. I use AI tools as collaborators,
-            while treating verification, clarity, and honest reporting
-            as important parts of the work.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>Areas I’m developing</h3>
-          <ul class="focus-list">
-            <li>Evaluating AI responses and instruction following</li>
-            <li>Data interpretation and analytical reporting</li>
-            <li>Text-pattern analysis and browser-based tools</li>
-            <li>AI-assisted development and workflow automation</li>
-            <li>Writing, editing, and digital content production</li>
-          </ul>
-        </article>
-
-      </div>
-    </div>
-
-  </div>
     </section>
 
     <section id="projects">
@@ -1332,11 +1131,8 @@
         <div class="project-grid">
 
           <article class="project">
-            <img class="project-image"
-                 src="1791931556911.jpg"
-                 alt="Lina Engine professional identity platform"
-                 loading="lazy">
-
+            <img class="project-image" src="1791931556911.jpg"
+                 alt="Lina Engine professional identity platform" loading="lazy">
             <div class="project-number">Project 01 · Professional Identity</div>
             <h3>Lina Engine</h3>
             <p>
@@ -1344,24 +1140,19 @@
               to bring work, skills, projects, and professional context
               together in one evolving experience.
             </p>
-
             <div class="project-tags">
               <span>AI Product Concept</span>
               <span>Professional Identity</span>
               <span>Personalization</span>
             </div>
-
             <div class="project-footer">
               <a href="lina-engine.html" class="text-link">View case study ↗</a>
             </div>
           </article>
 
           <article class="project">
-            <img class="project-image"
-                 src="1791931610346.jpg"
-                 alt="Bloomie child-development reading companion"
-                 loading="lazy">
-
+            <img class="project-image" src="1791931610346.jpg"
+                 alt="Bloomie child-development reading companion" loading="lazy">
             <div class="project-number">Project 02 · Inclusive Technology</div>
             <h3>Bloomie</h3>
             <p>
@@ -1369,24 +1160,19 @@
               accessible stories, visual communication, sensory-aware
               experiences, and support for children with different needs.
             </p>
-
             <div class="project-tags">
               <span>Accessibility</span>
               <span>Child Development</span>
               <span>Product Design</span>
             </div>
-
             <div class="project-footer">
               <a href="bloomie.html" class="text-link">Explore project ↗</a>
             </div>
           </article>
 
           <article class="project">
-            <img class="project-image"
-                 src="1791931746045.jpg"
-                 alt="Second Opinion Debugger software troubleshooting tool"
-                 loading="lazy">
-
+            <img class="project-image" src="1791931746045.jpg"
+                 alt="Second Opinion Debugger software troubleshooting tool" loading="lazy">
             <div class="project-number">Project 03 · Developer Tools</div>
             <h3>Second Opinion Debugger</h3>
             <p>
@@ -1395,27 +1181,20 @@
               consider possible causes, and approach debugging more
               systematically.
             </p>
-
             <div class="project-tags">
               <span>Debugging</span>
               <span>Developer Tools</span>
               <span>Problem Solving</span>
             </div>
-
             <div class="project-footer">
               <a href="https://second-opinion-debugger.netlify.app/"
-                 class="text-link"
-                 target="_blank"
-                 rel="noopener noreferrer">Open live demo ↗</a>
+                 class="text-link" target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
             </div>
           </article>
 
           <article class="project">
-            <img class="project-image"
-                 src="images/1791931512789.jpg"
-                 alt="Telltale browser-based text analysis tool"
-                 loading="lazy">
-
+            <img class="project-image" src="images/1791931512789.jpg"
+                 alt="Telltale browser-based text analysis tool" loading="lazy">
             <div class="project-number">Project 04 · Text Analysis</div>
             <h3>Telltale</h3>
             <p>
@@ -1424,28 +1203,21 @@
               experimental pattern-based tool, not proof that a text was
               written by AI.
             </p>
-
             <div class="project-tags">
               <span>Text Analysis</span>
               <span>JavaScript</span>
               <span>Writing Patterns</span>
             </div>
-
             <div class="project-footer">
               <a href="https://telltaledetector.netlify.app"
-                 class="text-link"
-                 target="_blank"
-                 rel="noopener noreferrer">Try Telltale ↗</a>
+                 class="text-link" target="_blank" rel="noopener noreferrer">Try Telltale ↗</a>
               <a href="telltale.html" class="text-link text-link-muted">Project details ↗</a>
             </div>
           </article>
 
           <article class="project">
-            <img class="project-image"
-                 src="1791931652543.jpg"
-                 alt="AI BOS business operating system project concept"
-                 loading="lazy">
-
+            <img class="project-image" src="1791931652543.jpg"
+                 alt="AI BOS business operating system project concept" loading="lazy">
             <div class="project-number">Project 05 · AI & Operations</div>
             <h3>AI BOS</h3>
             <p>
@@ -1454,22 +1226,17 @@
               project is presented as a developing concept rather than
               a finished commercial product.
             </p>
-
             <div class="project-tags">
               <span>AI Systems</span>
               <span>Workflow Concepts</span>
               <span>Product Development</span>
             </div>
-
             <div class="project-status">In development</div>
           </article>
 
           <article class="project">
-            <img class="project-image"
-                 src="1791932000163.jpg"
-                 alt="Data analysis work sample"
-                 loading="lazy">
-
+            <img class="project-image" src="1791932000163.jpg"
+                 alt="Data analysis work sample" loading="lazy">
             <div class="project-number">Project 06 · Data Analysis</div>
             <h3>Data Analysis Work Sample</h3>
             <p>
@@ -1478,13 +1245,11 @@
               and communicating findings clearly. A completed, verifiable
               analysis will be linked here when published.
             </p>
-
             <div class="project-tags">
               <span>Data Interpretation</span>
               <span>Analytical Thinking</span>
               <span>Reporting</span>
             </div>
-
             <div class="project-status">Work sample in progress</div>
           </article>
 
@@ -1496,7 +1261,6 @@
       <div class="container">
         <div class="section-label">03 — AI Evaluation</div>
         <h2 class="section-title">I look beyond the answer.</h2>
-
         <p class="section-intro">
           AI evaluation asks more than whether a response sounds convincing.
           It considers whether the response follows instructions, uses
@@ -1505,7 +1269,6 @@
         </p>
 
         <div class="cards">
-
           <article class="evaluation-card">
             <div class="card-icon" aria-hidden="true">◎</div>
             <h3>Instruction Following</h3>
@@ -1518,7 +1281,7 @@
 
           <article class="evaluation-card">
             <div class="card-icon" aria-hidden="true">✓</div>
-            <h3>Factuality & Evidence</h3>
+            <h3>Factuality &amp; Evidence</h3>
             <p>
               Checking important factual claims against appropriate
               sources, identifying unsupported statements, and separating
@@ -1558,154 +1321,86 @@
 
           <article class="evaluation-card">
             <div class="card-icon" aria-hidden="true">!</div>
-            <h3>Limitations & Uncertainty</h3>
+            <h3>Limitations &amp; Uncertainty</h3>
             <p>
               Identifying what a response cannot establish, where
               verification is needed, and whether limitations are
               communicated clearly.
             </p>
           </article>
-
         </div>
 
         <div class="project-footer">
-          <a href="llm-evaluation.html" class="text-link">
-            View the LLM evaluation case study ↗
-          </a>
+          <a href="llm-evaluation.html" class="text-link">View the LLM evaluation case study ↗</a>
         </div>
       </div>
     </section>
 
-<section id="data-analysis">
-  <div class="container">
-    <div class="section-label">04 — DATA ANALYSIS</div>
-    <h2 class="section-title">From information to insight.</h2>
+    <section id="data-analysis">
+      <div class="container">
+        <div class="section-label">04 — DATA ANALYSIS</div>
+        <h2 class="section-title">From information to insight.</h2>
+        <p class="section-intro">
+          Turning public data into clear, evidence-based findings.
+          My approach prioritizes meaningful comparisons, transparent
+          methods, and conclusions that stay faithful to the evidence.
+        </p>
 
-    <p class="section-intro">
-      Turning public data into clear, evidence-based findings.
-      My approach prioritizes meaningful comparisons, transparent
-      methods, and conclusions that stay faithful to the evidence.
-    </p>
+        <div class="analysis-grid">
+          <img class="analysis-image"
+               src="1791945997989.jpg"
+               alt="Data exploration and visualization interface"
+               loading="lazy">
 
-    <div class="analysis-grid">
+          <div class="analysis-content">
+            <p class="analysis-eyebrow">FEATURED CASE STUDY · WORLD BANK DATA</p>
+            <h3>Digital Access Across African Countries</h3>
+            <p>
+              How does internet use differ across six African countries?
+              This case study compares reported internet-use rates in
+              2023 to highlight the differences and communicate what
+              the available data can—and cannot—tell us.
+            </p>
 
-      <div class="analysis-visual-column">
-        <img
-          class="analysis-image"
-          src="1791945997989.jpg"
-          alt="Data exploration and visualization interface"
-          loading="lazy"
-        >
-
-        <div class="beyond-data-card">
-          <p class="beyond-data-eyebrow">BEYOND THE DATA</p>
-
-          <h3>Building ideas into intelligent experiences.</h3>
-
-          <p class="beyond-data-intro">
-            My work extends into AI-powered workflows, thoughtful
-            digital products, and human-centred technology.
-            I explore how research, intelligent systems, and
-            creative problem-solving can come together to make
-            digital experiences more useful and meaningful.
-          </p>
-
-          <div class="beyond-data-item">
-            <span class="beyond-data-icon">✳</span>
-            <div>
-              <h4>AI &amp; Intelligent Workflows</h4>
-              <p>
-                Connecting AI reasoning, automation, and
-                practical problem-solving.
-              </p>
+            <div class="analysis-highlight">
+              <span class="analysis-stat">49.5 percentage points</span>
+              <span class="analysis-stat-label">
+                Difference between the highest and lowest reported rates
+              </span>
+              <p>South Africa recorded 78.3%, compared with 28.8% in Rwanda.</p>
             </div>
-          </div>
 
-          <div class="beyond-data-item">
-            <span class="beyond-data-icon">◇</span>
-            <div>
-              <h4>Digital Product Experiences</h4>
-              <p>
-                Exploring accessible, intuitive products
-                shaped around real human needs.
-              </p>
-            </div>
-          </div>
+            <h4>What the case study covers</h4>
+            <ul>
+              <li>Comparison of six African countries</li>
+              <li>Visual presentation of public data</li>
+              <li>Interpretation of key differences</li>
+              <li>Data sourcing, methodology, and limitations</li>
+            </ul>
 
-          <div class="beyond-data-item">
-            <span class="beyond-data-icon">↗</span>
-            <div>
-              <h4>Systems &amp; Innovation</h4>
-              <p>
-                Bringing structured thinking and creative
-                engineering together to solve problems.
-              </p>
-            </div>
+            <p>
+              The analysis distinguishes reported internet use from
+              affordability, connection quality, and equal access.
+            </p>
+
+            <a href="data-analysis.html" class="button button-primary btn">
+              Explore the Full Case Study ↗
+            </a>
+
+            <p class="analysis-source">
+              DATA SOURCE:
+              <a href="https://data.worldbank.org/indicator/IT.NET.USER.ZS"
+                 target="_blank" rel="noopener noreferrer">World Bank — Internet Use ↗</a>
+            </p>
           </div>
         </div>
       </div>
-
-      <div class="analysis-content">
-        <p class="analysis-eyebrow">
-          FEATURED CASE STUDY · WORLD BANK DATA
-        </p>
-
-        <h3>Digital Access Across African Countries</h3>
-
-        <p>
-          How does internet use differ across six African countries?
-          This case study compares reported internet-use rates in
-          2023 to highlight the differences and communicate what
-          the available data can—and cannot—tell us.
-        </p>
-
-        <div class="analysis-highlight">
-          <span class="analysis-stat">49.5 percentage points</span>
-          <span class="analysis-stat-label">
-            Difference between the highest and lowest reported rates
-          </span>
-          <p>
-            South Africa recorded 78.3%, compared with 28.8% in Rwanda.
-          </p>
-        </div>
-
-        <h4>What the case study covers</h4>
-
-        <ul>
-          <li>Comparison of six African countries</li>
-          <li>Visual presentation of public data</li>
-          <li>Interpretation of key differences</li>
-          <li>Data sourcing, methodology, and limitations</li>
-        </ul>
-
-        <p>
-          The analysis distinguishes reported internet use from
-          affordability, connection quality, and equal access.
-        </p>
-
-        <a href="data-analysis.html" class="btn btn-primary">
-          Explore the Full Case Study ↗
-        </a>
-
-        <p class="analysis-source">
-          DATA SOURCE:
-          <a
-            href="https://data.worldbank.org/indicator/IT.NET.USER.ZS"
-            target="_blank"
-            rel="noopener noreferrer"
-          >World Bank — Internet Use ↗</a>
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="writing">
       <div class="container">
-        <div class="section-label">05 — Writing & Digital Content</div>
-        <h2 class="section-title">Words, ideas & presentation.</h2>
-
+        <div class="section-label">05 — Writing &amp; Digital Content</div>
+        <h2 class="section-title">Words, ideas &amp; presentation.</h2>
         <p class="section-intro">
           My work also includes written content and editing, with an
           emphasis on readability, structure, consistency, and a clear
@@ -1713,18 +1408,15 @@
         </p>
 
         <div class="writing-grid">
-
           <article class="writing-card">
             <div class="card-icon" aria-hidden="true">✎</div>
-            <h3>Writing & Content</h3>
+            <h3>Writing &amp; Content</h3>
             <p>
               Written work and digital content presented through a
               dedicated writing portfolio.
             </p>
-            <a href="https://linabooks.netlify.app"
-               class="text-link"
-               target="_blank"
-               rel="noopener noreferrer">Explore writing ↗</a>
+            <a href="https://linabooks.netlify.app" class="text-link"
+               target="_blank" rel="noopener noreferrer">Explore writing ↗</a>
           </article>
 
           <article class="writing-card">
@@ -1734,10 +1426,8 @@
               Editing samples focused on improving clarity, flow,
               consistency, and the overall reading experience.
             </p>
-            <a href="https://linaedit.netlify.app"
-               class="text-link"
-               target="_blank"
-               rel="noopener noreferrer">View editing samples ↗</a>
+            <a href="https://linaedit.netlify.app" class="text-link"
+               target="_blank" rel="noopener noreferrer">View editing samples ↗</a>
           </article>
 
           <article class="writing-card">
@@ -1747,21 +1437,17 @@
               A separate content destination for browsing published
               written work and related material.
             </p>
-            <a href="https://linabooks.tiiny.site"
-               class="text-link"
-               target="_blank"
-               rel="noopener noreferrer">Open content collection ↗</a>
+            <a href="https://linabooks.tiiny.site" class="text-link"
+               target="_blank" rel="noopener noreferrer">Open content collection ↗</a>
           </article>
-
         </div>
       </div>
     </section>
 
     <section id="skills">
       <div class="container">
-        <div class="section-label">06 — Skills & Tools</div>
+        <div class="section-label">06 — Skills &amp; Tools</div>
         <h2 class="section-title">The toolkit behind my work.</h2>
-
         <p class="section-intro">
           A practical mix of AI tools, technical foundations, analytical
           approaches, and content skills. My experience varies by tool
@@ -1770,157 +1456,133 @@
         </p>
 
         <div class="skills-grid">
-
           <article class="skill-card">
-            <h3>AI & Language Models</h3>
-            <p>
-              ChatGPT · Claude · Gemini · Prompt Engineering ·
-              Response Comparison · AI Output Review
-            </p>
+            <h3>AI &amp; Language Models</h3>
+            <p>ChatGPT · Claude · Gemini · Prompt Engineering · Response Comparison · AI Output Review</p>
           </article>
 
           <article class="skill-card">
-            <h3>Analysis & Evaluation</h3>
-            <p>
-              Instruction Following · Factuality Checks ·
-              Error Identification · Structured Assessment ·
-              Data Interpretation
-            </p>
+            <h3>Analysis &amp; Evaluation</h3>
+            <p>Instruction Following · Factuality Checks · Error Identification · Structured Assessment · Data Interpretation</p>
           </article>
 
           <article class="skill-card">
-            <h3>Automation & Workflows</h3>
-            <p>
-              Make.com · Airtable · Workflow Design ·
-              Process Organization · AI-Assisted Automation
-            </p>
+            <h3>Automation &amp; Workflows</h3>
+            <p>Make.com · Airtable · Workflow Design · Process Organization · AI-Assisted Automation</p>
           </article>
 
           <article class="skill-card">
-            <h3>Web & Development</h3>
-            <p>
-              HTML · CSS · JavaScript · Python Foundations ·
-              GitHub · Netlify · AI-Assisted Coding
-            </p>
+            <h3>Web &amp; Development</h3>
+            <p>HTML · CSS · JavaScript · Python Foundations · GitHub · Netlify · AI-Assisted Coding</p>
           </article>
 
           <article class="skill-card">
-            <h3>Writing & Editing</h3>
-            <p>
-              Content Writing · Editing · Readability ·
-              Content Structure · Digital Publishing
-            </p>
+            <h3>Writing &amp; Editing</h3>
+            <p>Content Writing · Editing · Readability · Content Structure · Digital Publishing</p>
           </article>
 
           <article class="skill-card">
             <h3>Product Thinking</h3>
-            <p>
-              Problem Definition · Feature Planning ·
-              User-Centered Thinking · Documentation ·
-              Iterative Improvement
-            </p>
+            <p>Problem Definition · Feature Planning · User-Centered Thinking · Documentation · Iterative Improvement</p>
           </article>
-
         </div>
       </div>
     </section>
 
-<section id="certifications">
-  <div class="section-label">07 — Certifications</div>
-  <h2>Verified learning. Visible proof.</h2>
+    <section id="certifications">
+      <div class="container">
+        <div class="section-label">07 — Certifications</div>
+        <h2 class="section-title">Verified learning. Visible proof.</h2>
+        <p class="section-intro">
+          A selection of my completed learning credentials in artificial
+          intelligence and software engineering. Each certificate includes
+          an optional link to Saylor Academy's verification page.
+        </p>
 
-  <p class="section-description">
-    A selection of my completed learning credentials in artificial
-    intelligence and software engineering. Each certificate includes
-    an optional link to Saylor Academy's verification page.
-  </p>
+        <div class="certificate-grid">
+          <article class="certificate-card">
+            <div class="certificate-image-wrap">
+              <img class="certificate-image"
+                   src="8742446237PO(1)_page-0001.jpg"
+                   alt="CS205 Building with Artificial Intelligence certificate issued to Pascaline Orji"
+                   loading="lazy">
+            </div>
+            <div class="certificate-content">
+              <div class="certificate-issuer">SAYLOR ACADEMY · CS205</div>
+              <h3>Building with Artificial Intelligence</h3>
+              <a class="verify-button"
+                 href="https://learn.saylor.org/admin/tool/certificate/index.php?code=8742446237PO"
+                 target="_blank" rel="noopener noreferrer">Verify Certificate ↗</a>
+            </div>
+          </article>
 
-  <div class="certificate-grid">
+          <article class="certificate-card">
+            <div class="certificate-image-wrap">
+              <img class="certificate-image"
+                   src="6659638974PO_page-0001.jpg"
+                   alt="CS302 Software Engineering certificate issued to Pascaline Orji"
+                   loading="lazy">
+            </div>
+            <div class="certificate-content">
+              <div class="certificate-issuer">SAYLOR ACADEMY · CS302</div>
+              <h3>Software Engineering</h3>
+              <a class="verify-button"
+                 href="https://learn.saylor.org/admin/tool/certificate/index.php?code=6659638974PO"
+                 target="_blank" rel="noopener noreferrer">Verify Certificate ↗</a>
+            </div>
+          </article>
+        </div>
 
-    <article class="certificate-card">
-      <div class="certificate-image-wrap">
-        <img
-          class="certificate-image"
-          src="8742446237PO(1)_page-0001.jpg" 
-          alt="CS205 Building with Artificial Intelligence certificate issued to Pascaline Orji"
-          loading="lazy">
+        <div class="certificate-note">
+          <h3>More certifications and ongoing professional development</h3>
+          <p>
+            The certificates featured here are a selection of my completed
+            learning credentials. I have additional certificates and continue
+            to expand my knowledge through professional courses and independent
+            learning in AI, software engineering, and related technologies.
+          </p>
+        </div>
       </div>
+    </section>
 
-      <div class="certificate-content">
-        <div class="certificate-issuer">SAYLOR ACADEMY · CS205</div>
-        <h3>Building with Artificial Intelligence</h3>
-
-        <a
-          class="verify-button"
-          href="https://learn.saylor.org/admin/tool/certificate/index.php?code=8742446237PO"
-          target="_blank"
-          rel="noopener noreferrer">
-          Verify Certificate ↗
-        </a>
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <div class="section-label">08 — Contact</div>
+            <h2>Have a thoughtful project in mind?</h2>
+            <p>
+              I’m interested in opportunities involving AI evaluation,
+              data analysis, automation, digital products, and content.
+              Connect with me to discuss relevant work and collaborations.
+            </p>
+          </div>
+          <a class="button button-primary"
+             href="https://www.linkedin.com/in/lina-cloud-21bb10412/"
+             target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+        </div>
       </div>
-    </article>
+    </section>
 
-    <article class="certificate-card">
-      <div class="certificate-image-wrap">
-        <img
-          class="certificate-image"
-          src="6659638974PO_page-0001.jpg" 
-          alt="CS302 Software Engineering certificate issued to Pascaline Orji"
-          loading="lazy">
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="current-year">2026</span> Lina Cloud. Built with curiosity and purpose.</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/lina-cloud-21bb10412/"
+           target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="#home">Back to top ↑</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-
-      <div class="certificate-content">
-        <div class="certificate-issuer">SAYLOR ACADEMY · CS302</div>
-        <h3>Software Engineering</h3>
-
-        <a
-          class="verify-button"
-          href="https://learn.saylor.org/admin/tool/certificate/index.php?code=6659638974PO"
-          target="_blank"
-          rel="noopener noreferrer">
-          Verify Certificate ↗
-        </a>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="certificate-note">
-    <h3>More certifications and ongoing professional development</h3>
-    <p>
-      The certificates featured here are a selection of my completed
-      learning credentials. I have additional certificates and continue
-      to expand my knowledge through professional courses and independent
-      learning in AI, software engineering, and related technologies.
-    </p>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="container footer-inner">
-    <p>© <span id="current-year">2026</span> Lina Cloud. Built with curiosity and purpose.</p>
-
-    <div class="footer-links">
-      <a
-        href="https://www.linkedin.com/in/lina-cloud-21bb10412/"
-        target="_blank"
-        rel="noopener noreferrer">
-        LinkedIn ↗
-      </a>
-      <a href="#home">Back to top ↑</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  document.getElementById("current-year").textContent =
-    new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+  </script>
 
 </body>
-      </html>
-
+</html>

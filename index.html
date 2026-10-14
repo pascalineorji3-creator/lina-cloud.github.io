@@ -689,6 +689,58 @@
         grid-template-columns: 1fr;
       }
 
+.about-portrait {
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.about-portrait img {
+  width: 100%;
+  flex: 1;
+  min-height: 300px;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.portrait-caption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 5px 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.portrait-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.about-details {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+@media (max-width: 850px) {
+  .about-portrait img {
+    min-height: 280px;
+    max-height: 420px;
+  }
+}
+
       .cards,
       .skills-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -848,32 +900,47 @@
             </p>
           </div>
         </div>
+    
+<div class="about-grid">
 
-        <div class="about-grid">
-          <article class="panel">
-            <h3>My approach</h3>
-            <p>
-              I explore problems by breaking them into smaller questions,
-              testing ideas, comparing outputs, identifying limitations,
-              and improving the result. I use AI tools as collaborators,
-              while treating verification, clarity, and honest reporting
-              as important parts of the work.
-            </p>
-          </article>
+  <div class="about-portrait">
+    <img
+      src="images/1791937279779.jpg"
+      alt="Lina Cloud — AI and digital technology practitioner"
+      loading="lazy"
+    >
+    <div class="portrait-caption">
+      <span class="portrait-dot"></span>
+      <span>Lina Cloud · AI & Digital Solutions</span>
+    </div>
+  </div>
+  
+  <div class="about-details">
+    <article class="panel">
+      <h3>My approach</h3>
+      <p>
+        I explore problems by breaking them into smaller questions,
+        testing ideas, comparing outputs, identifying limitations,
+        and improving the result. I use AI tools as collaborators,
+        while treating verification, clarity, and honest reporting
+        as important parts of the work.
+      </p>
+    </article>
 
-          <article class="panel">
-            <h3>Areas I’m developing</h3>
-            <ul class="focus-list">
-              <li>Evaluating AI responses and instruction following</li>
-              <li>Data interpretation and analytical reporting</li>
-              <li>Text-pattern analysis and browser-based tools</li>
-              <li>AI-assisted development and workflow automation</li>
-              <li>Writing, editing, and digital content production</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+    <article class="panel">
+      <h3>Areas I’m developing</h3>
+      <ul class="focus-list">
+        <li>Evaluating AI responses and instruction following</li>
+        <li>Data interpretation and analytical reporting</li>
+        <li>Text-pattern analysis and browser-based tools</li>
+        <li>AI-assisted development and workflow automation</li>
+        <li>Writing, editing, and digital content production</li>
+      </ul>
+    </article>
+  </div>
+
+</div>
+
 
     <section id="projects">
       <div class="container">
